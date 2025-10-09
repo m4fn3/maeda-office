@@ -1,0 +1,31 @@
+{{ define "main" }}
+<div class="main">
+    <h1><span>お問い合わせ</span></h1>
+    <p>
+        お問い合わせは以下のフォームからお願いいたします。<br>
+        ご質問やご相談など、どんなことでもお気軽にお問い合わせください。<br>
+        なお、返信にはお時間をいただく場合がございますので、ご了承ください。
+    </p>
+    <form class="contact_form">
+        <div class="error">
+        </div>
+        <div class="success">
+            お問い合わせありがとうございます。<br>
+            追ってご連絡いたしますので、しばらくお待ちください。
+        </div>
+        <label>お名前<span class="required">*必須</span></label><br>
+        <input type="text" id="name" name="name">
+        <label>フリガナ</label><br>
+        <input type="text" id="furigana" name="furigana">
+        <label>メールアドレス<span class="required">*必須</span></label><br>
+        <input type="email" id="email" name="email">
+        <label>メールアドレス(確認用)<span class="required">*必須</span></label><br>
+        <input type="email" id="email2" name="email2">
+        <label>電話番号</label><br>
+        <input type="tel" id="phone" name="phone">
+        <label>お問い合わせ内容<span class="required">*必須</span></label><br>
+        <textarea id="message" rows="5" name="message"></textarea>
+        <input type="submit" class="submit" value="送信する">
+    </form>
+</div>
+{{ end }}

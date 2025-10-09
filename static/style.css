@@ -1,0 +1,530 @@
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400&family=Varela+Round&display=swap'); 
+
+body {
+    background-color: #E6F7FA;
+    color: #1B2A3A;
+    font-size: 16px;
+    /* font-family: 'Noto Sans JP'; */
+    font-family: "Helvetica Neue", "Helvetica", "Hiragino Sans", "Arial", "Yu Gothic", "Meiryo", sans-serif;
+    font-weight: 400;
+    margin: 20px auto 0 auto;
+    /* テキストの折り返し */
+    overflow-wrap: anywhere;
+    word-break: normal;
+    line-break: strict;
+}
+
+a {
+    text-decoration: none;
+    color: #1B2A3A;
+}
+
+h1 {
+    border-bottom: 1px solid #d8d8d8;
+    font-weight: normal;
+    font-size: 28px;
+    margin: 0 0 20px 0;
+}
+h1 span {
+    border-bottom: 5px solid #007B8F;
+    padding: 0 8px 1px 5px;
+}
+h2 {
+    font-size: 20px;
+    font-weight: normal;
+    border-left: 4px solid #6FCF97;
+    padding: 0 0 0 12px;
+    margin: 20px 0 0 10px;
+}
+
+/* pagetop */
+.pagetop {
+    position: fixed;
+    right: 25px;
+    bottom: 45px;
+    z-index: 10000;
+    width: 46px;
+    height: 48px;
+    display: none;
+    cursor: pointer;
+}
+
+.pagetop i {
+    background: #007B8F;
+    border: 1px solid #007B8F;
+    border-radius: 30px;
+    text-align: center;
+    line-height: 1;
+    padding: 15px;
+    color: #fff;
+}
+
+/* header */
+.header {
+    max-width: 1050px;
+    width: 100%;
+    margin: 0 auto;
+    /* height: 110px; */
+    height: 90px;
+}
+.header_title {
+    float: left;
+    margin: 10px 15px;
+}
+.header_title a {
+    display: block; 
+}
+.header_title img {
+    height: 41px;
+}
+.header_title span {
+    display: block;
+    margin: 0 18px;
+}
+.header_info {
+    float: right;
+    margin: 15px 25px 0 0;
+    display: flex;
+    text-align: center;
+}
+.header_info div {
+    font-size: 17px;
+    margin: 10px;
+    display: inline-block;
+}
+.header_info div .phone_number { /* 電話番号 */
+    margin: 0;
+    font-size: 18px;
+    display: block;
+}
+.header_info div .phone_number a { /* 電話番号 */
+    margin: 0;
+}
+.header_info div .time { /* 営業時間 */
+    font-size: 13px;
+    margin: 0 0 0 10px;
+    display: inline-block;
+}
+.header_info div span {
+    font-size: 15px;
+}
+.header_inquiry { /* お問い合わせボタン */
+    background: #8FE388;
+    color: #2E4053;
+    vertical-align: middle;;
+    display: inline-block;
+    border-radius: 8px;
+    padding: 10px 30px;
+    margin: 10px;
+}
+.header_inquiry:hover {
+  transform: translate3d(0, 2px, 0);
+  box-shadow: none;
+  background: #6FCF97;
+}
+@media screen and (max-width: 910px) {
+    .header {
+        /* height: 160px; */
+        height: 180px;
+    }
+    .header_title {
+        float: none;
+        text-align: center;
+        margin: 0 auto;
+    }
+    .header_info {
+        float: none;
+        text-align: center;
+        display: block;
+        margin: 10px auto 0 auto;
+    }
+    .header_info div {
+        display: block;
+    }
+    .header_inquiry {
+        margin: 0px;
+    }
+}
+
+/* nav_pc */
+.nav {
+    margin: 15px auto 10px auto;
+    background-color: #8FE388;
+    padding: 7px 0 0 0;  /* nav上の影の幅 */
+}
+
+@media screen and (max-width: 800px) {
+    .nav_pc {
+        display: none;
+    }
+}
+.nav_pc {
+    background-color: #007B8F;
+}
+.nav_pc ul {
+    list-style: none;
+    padding: 15px 0;
+    margin: 0;
+    text-align: center;
+}
+.nav_pc li {
+    display: inline-block;
+    font-size: 16px;
+    border-right: 1px solid #8f9aad;
+    padding: 0 20px;
+}
+.nav_pc li:first-child {
+    border-left: 1px solid #8f9aad;
+}
+.nav_pc .here a::after {
+    width: 100%; /* 現在のページに対しては常に表示 */
+}
+.nav_pc li a {
+    color: #ebe8e2;
+    position: relative;
+    display: block;
+    padding: 0 15px;
+}
+.nav_pc li a::after {
+  position: absolute;
+  content: '';
+  bottom: -7px;
+  left: 0;
+  width: 0;
+  height: 2.5px;
+  background: #8FE388;
+  transition: all 0.3s ease 0s;
+}
+.nav_pc li a:hover::after {
+  width: 100%;
+}
+
+/* nav_mobile */
+@media screen and (min-width: 801px) {
+    .nav_mobile_trigger {
+        display: none;
+    }
+}
+.nav_mobile {
+    background-color: #007B8F;
+    display: none;
+}
+.nav_mobile ul {
+    list-style: none;
+    padding: 0 0 15px 0;
+    margin: 0;
+    text-align: center;
+}
+.nav_mobile li {
+    font-size: 16px;
+    border-bottom: 1px dashed #8f9aad;
+    padding: 10px 0;
+}
+.nav_mobile li a {
+    width: 80%;
+    display: block;
+    margin: 0 auto;
+    color: #ebe8e2;
+}
+.nav_mobile li:first-child {
+    border-top: 1px dashed #8f9aad;
+}
+.nav_mobile_trigger {
+    background-color: #007B8F;
+    color: #ebe8e2;
+    margin: 0 auto;
+    padding: 15px 0;
+    text-align: center;
+    cursor: pointer;
+}
+.nav_mobile_trigger i {
+    display: inline-block;
+    padding: 0 5px 0 0;
+}
+
+/* main */
+.main {
+    padding: 20px 20px 50px 20px;
+    font-weight: 400;
+    line-height: 1.6;
+    max-width: 1050px;
+    margin: 0 auto;
+}
+.main p {
+    padding: 0 20px;
+    max-width: 750px;
+}
+/* (top) */
+.main .top_eyecatch {
+    width: 80%;
+    height: auto;
+    margin: 0px auto 20px auto;
+    display: block;
+    border: 10px solid rgba(179, 227, 234, 0.6);
+    border-radius: 5px;
+}
+@media screen and (max-width: 769px) {
+    .main .top_eyecatch {
+        width: 95%;
+    }
+}
+/* (profile) */
+.main .profile_history {
+    padding: 0 20px;
+    margin: 0 6px;
+    max-width: 730px;
+}
+.main .profile_history td:first-child {
+    width: 70px;
+    vertical-align: top;
+}
+.main .profile_image {
+    width: 250px;
+    height: auto;
+    float: right;
+    margin: 0px auto 20px 40px;
+    display: block;
+    border: 10px solid rgba(179, 227, 234, 0.6);
+    border-radius: 5px;
+}
+@media screen and (max-width: 610px) {
+    .main .profile_image {
+        float: none;
+        margin: 20px;
+    }
+}
+/* (contact) */
+.contact_form {
+    margin: 0px 50px 20px 50px;
+    width: 500px;
+    position: relative;
+}
+@media screen and (max-width: 769px) {
+    .contact_form {
+        width: auto;
+        margin: 0px 20px 20px 20px;
+    }
+}
+.contact_form label {
+    margin: 20px 0 5px 0;
+    display: inline-block;
+}
+.contact_form input {
+    border: 1px solid #007B8F;
+    border-radius: 6px;
+    font-size: 16px;
+    width: 90%;
+    padding: 7px;
+    display: block
+}
+.contact_form input:focus {
+    outline: 1px solid #007B8F;
+}
+.contact_form textarea {
+    border: 1px solid #007B8F;
+    border-radius: 6px;
+    font-size: 16px;
+    width: 90%;
+    padding: 7px;
+    height: 200px;
+}
+.contact_form textarea:focus {
+    outline: 1px solid #007B8F;
+}
+.contact_form .submit {
+    margin: 30px 0;
+    background-color: #007B8F;
+    width: 93%;
+    color: #ebe8e2;
+    font-size: 20px;
+}
+.contact_form .submit:hover {
+  transform: translate3d(0, 2px, 0);
+  box-shadow: none;
+  background: #006272;
+}
+.contact_form .required {
+    color: #E74C3C;
+    padding: 0 0 0 5px;
+}
+.contact_form .error {
+    width: 85%;
+    color: #E74C3C;
+    background-color: #FDECEA;
+    border-radius: 6px;
+    padding: 10px 20px;
+    margin: 0 0 20px 0;
+    display: none;
+}
+.contact_form .success {
+    width: 85%;
+    color: #1E8449;
+    background-color: #C7EFD9;
+    border-radius: 6px;
+    padding: 10px 20px;
+    margin: 0 0 20px 0;
+    display: none;
+}
+/* (article) */
+.article_tags {
+    display: flex;
+    justify-content: space-between; /* 横方向に均等幅 */
+    flex-wrap: wrap; /* 複数行に折り返す */
+    list-style: none;
+    padding: 0 20px;
+    max-width: 420px;
+    margin: 30px 0 30px 0;
+}
+.article_tags li {   
+    display: inline-block;
+    margin: 5px 0;
+    padding: 5px 25px;
+    border-radius: 5px;
+    color: #2E4053;
+    background-color: #8FE388;
+    text-align: center;
+}
+.article_list {
+    list-style: none;
+    padding: 0 10px;
+    margin: 10px 0 20px 0;
+}
+.article_list li {
+    border-bottom: 1px solid #d8d8d8;
+    padding: 15px 0;
+}
+.article_list li:first-child {
+    border-top: 1px solid #d8d8d8;
+}
+.article_list_tag_box {
+    margin: 5px 20px;
+}
+.article_list_tag_box span {
+    font-size: 15px;
+    padding: 2px 10px;
+    vertical-align: middle; /* 縦方向の高さを揃える */
+}
+.article_list_tag {
+    font-size: 13px;
+    width: fit-content;
+    color: #2E4053;
+    display: inline-block;
+    background-color: #8FE388;
+    padding: 3px 10px;
+    border-radius: 15px;
+}
+.article_list_title {
+    margin: 5px 20px;
+}
+.article_back {
+    color: #2E4053;
+    display: flex;
+    width: fit-content;
+    background-color: #8FE388;
+    padding: 5px 20px;
+    margin: 20px auto 0 auto;
+    border-radius: 5px;
+}
+.article_content p {
+    padding: 0 20px;
+    max-width: none;
+}
+.article_content img {
+    max-width: 750px;
+}
+@media (max-width: 800px) {
+  .article_content img {
+    width: 100%;
+  }
+}
+.article_content table {
+    font-size: 13.5px;
+    margin: 30px 40px 30px 60px;
+    border-collapse: collapse; /* 枠線を重ねて一本で表示 */
+}
+@media (max-width: 820px) {
+  .article_content table {
+    font-size: 11px;
+    margin: 30px auto;
+    width: 90%;
+  }
+}
+.article_content th, 
+.article_content td {
+    padding: 5px 8px;
+    /* border-bottom: 1px solid #1B2A3A;  */
+    border: 0.5px solid gray; 
+}
+/* 擬似要素で上下の線をはみ出させる (tricky) */
+.article_content table {
+  position: relative;
+  border: 2px solid #1B2A3A;
+}
+.article_content thead {
+  position: relative;
+  border-bottom: none;
+}
+/* -10pxではみ出す */
+.article_contentXXX thead::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  /* left: -10px;    
+  right: -10px; */
+  left: 0px;
+  right: 0px;
+  /* border-top: 2px solid #1B2A3A; */
+}
+.article_content thead::after {
+  content: "";
+  position: absolute;
+  bottom: 0;         
+  /* left: -10px;       
+  right: -10px;       */
+  left: 0px;
+  right: 0px;
+  border-bottom: 2px solid #1B2A3A;
+}
+.article_contentXXX tbody::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  /* left: -10px;
+  right: -10px; */
+  left: 0px;
+  right: 0px;
+  /* border-bottom: 2px solid #1B2A3A; */
+}
+
+
+.article_content .red {
+    color: #E74C3C;
+}
+.article_content .gray {
+    color: gray;
+}
+.article_content .center {
+    text-align: center;
+}
+
+/* footer */
+.footer {
+    padding: 30px 20px 50px 20px;
+    text-align: center;
+    color: #ebe8e2;
+    background-color: #007B8F;
+}
+.footer img {
+    height: 30px;
+    margin: 0 0 10px 0;
+}
+.footer .copyright {
+    font-size: 12px;
+    margin-top: 10px;
+}
+.footer a {
+    color: #ebe8e2;
+}
+.footer span {
+    display: inline-block;
+}

@@ -1,0 +1,15 @@
+{{ define "main" }}
+<div class="main">
+    <div class="article_list_tag_box">
+        {{ range .Params.tags }}
+            <a class="article_list_tag" href="{{ "tags/" | relURL }}{{.}}">{{ . }}</a>
+        {{ end }}
+        <span>{{ .Date.Format "2006/01/02" }} 更新</span>
+    </div>
+    <h1><span>{{ .Title }}</span></h1>
+    <div class="article_content">
+        {{ .Content }}
+    </div>
+    <a class="article_back" href="{{ "article" | relURL }}">記事一覧へ戻る</a>
+</div>
+{{ end }}

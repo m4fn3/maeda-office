@@ -1,0 +1,42 @@
+ <div class="header">
+    <div class="header_title">
+        <a href="{{ "" | relURL }}">
+            <img src="{{ "images/logo_black.png" | relURL }}">
+        </a>
+        <span>起業をご検討の際には是非ご相談ください！</span>
+    </div>
+    <div class="header_info">
+        <div>
+            <div class="phone_number">
+                <i class="fa fa-phone-square"></i>
+                <a href="tel:08041317420">080-4131-7420</a>
+            </div>
+            <div class="time">営業時間：<span>9:30～17:30</span>（不定休）</div>
+        </div>
+        <a href="{{ "contact" | relURL }}" class="header_inquiry">お問い合わせはこちら</a>
+    </div>
+</div>
+<div class="nav">
+    <div class="nav_pc">
+        <ul>
+            <li {{ if eq .Title "トップ" }}class="here"{{ end }}><a href="{{ "" | relURL }}">トップ</a></li>
+            <li {{ if eq .Title "プロフィール" }}class="here"{{ end }}><a href="{{ "profile" | relURL }}">プロフィール</a></li>
+            <li {{ if eq .Title "業務内容" }}class="here"{{ end }}><a href="{{ "service" | relURL }}">業務内容</a></li>
+            <li {{ if eq .Title "お役立ち豆知識" }}class="here"{{ end }}><a href="{{ "article" | relURL }}">お役立ち豆知識</a></li>
+            <li {{ if eq .Title "お問い合わせ" }}class="here"{{ end }}><a href="{{ "contact" | relURL }}">お問い合わせ</a></li>
+        </ul>
+    </div>
+    <div class="nav_mobile_trigger">
+        <i class="fa fa-navicon"></i>
+        メニュー
+    </div>
+    <div class="nav_mobile">
+        <ul>
+            <li><a href="{{ "" | relURL }}">トップ</a></li>
+            <li><a href="{{ "profile" | relURL }}">プロフィール</a></li>
+            <li><a href="{{ "service" | relURL }}">業務内容</a></li>
+            <li><a href="{{ "article" | relURL }}">お役立ち豆知識</a></li>
+            <li><a href="{{ "contact" | relURL }}">お問い合わせ</a></li>
+        </ul>
+    </div>
+</div>

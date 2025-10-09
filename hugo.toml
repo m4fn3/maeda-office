@@ -1,0 +1,10 @@
+baseURL = 'https://tax-maeda.com/'
+languageCode = 'ja'
+title = '前田武志税理士事務所'
+
+[taxonomies]
+  tag = "tags" # categoriesを無効化
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true # MarkdownでHTMLを許可

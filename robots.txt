@@ -1,0 +1,5 @@
+
+Sitemap: https://maeda-office.github.io/sitemap.xml
+
+User-agent: *
+Disallow:

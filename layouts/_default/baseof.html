@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L1FDPQ3C73"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-L1FDPQ3C73');
+    </script>
+    <meta charset="utf-8">
+    <title>{{ .Title }} | 前田武志税理士事務所</title>
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://tax-maeda.com/">
+    <meta property="og:title" content="{{ .Title }} | 前田武志税理士事務所">
+    <meta property="og:description" content="当事務所では、税務相談や経理指導など、幅広い税務・会計サービスを提供しています。">
+    <meta property="og:image" content="">
+    <meta property="og:site_name" content="前田武志税理士事務所">
+    <script type="application/ld+json"> {  "@context": "https://schema.org",  "mainEntityOfPage": {    "@type": "WebPage",    "@id": "https://tax-maeda.com/?utm_source=GBP&utm_medium=GBP&utm_term=GBP&utm_content=GBP&utm_campaign=GBP"  },  "@type": ["LocalBusiness", "Service"],  "brand": [{    "@type": "Brand",    "name": "税理士"  }, {    "@type": "Brand",    "name": "前田武志税理士事務所"  }],  "keywords": ["兵庫県", "神戸市東灘区", "法人新設"],  "description": "神戸で法人新設をお考えなら、「前田武志税理士事務所」にご相談ください。兵庫県神戸市東灘区の青木駅より徒歩10分、当事務所では、法人新設や個人事業の開業を検討している方をはじめ、幅広い経営者や事業主に向けた税務・会計サービスを提供しています。初期段階から丁寧にサポートを行い、安心して事業をスタートできるよう支援しています。神戸エリアでをお考えの方は、ぜひご相談下さい！",  "name": "前田武志税理士事務所",  "telephone": "+818041317420",  "url": "https://tax-maeda.com/?utm_source=GBP&utm_medium=GBP&utm_term=GBP&utm_content=GBP&utm_campaign=GBP",  "address": {    "@type": "PostalAddress",    "addressCountry": "JP",    "postalCode": "658-0015",    "addressRegion": "兵庫県",    "addressLocality": "神戸市東灘区",    "streetAddress": "本山南町9-1-7エヌヴィ神戸本山５０４号"  },  "offers": [{    "@type": "Offer",    "name": "法人新設"  }],  "openingHoursSpecification": [{    "@type": "OpeningHoursSpecification",    "dayOfWeek": "Sunday",    "opens": "09：30",    "closes": "17：30"  },{    "@type": "OpeningHoursSpecification",    "dayOfWeek": "Monday",    "opens": "09：30",    "closes": "17：30"  },{    "@type": "OpeningHoursSpecification",    "dayOfWeek": "Tuesday",    "opens": "09：30",    "closes": "17：30"  },{    "@type": "OpeningHoursSpecification","dayOfWeek": "Wednesday",    "opens": "09：30",    "closes": "17：30"  },{    "@type": "OpeningHoursSpecification",    "dayOfWeek": "Thursday",    "opens": "09：30",    "closes": "17：30"  },{    "@type": "OpeningHoursSpecification",    "dayOfWeek": "Friday",    "opens": "09：30",    "closes": "17：30"  },{    "@type": "OpeningHoursSpecification",    "dayOfWeek": "Saturday",    "opens": "09：30",    "closes": "17：30"  }]} </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="{{ "style.css" | relURL }}">
+    <script src="https://kit.fontawesome.com/998858285b.js" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" href="{{ "images/icon.ico" | relURL }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="{{ "script.js" | relURL }}"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+</head>
+<body>
+    <div class="pagetop">
+        <i class="fa fa-angle-up is-visible"></i>
+    </div>
+    {{ partial "header.html" . }}
+    {{ block "main" . }}{{ end }}
+    {{ partial "footer.html" . }}
+</body>
+</html>
