@@ -3,7 +3,7 @@
 ## ビルド
 - ビルドを行う: `hugo` 
 - プレビュー用ビルドを行う: `hugo server -D` *アドレスはlocalhostになる
-* GitHub Actionsで、自動でHugoのビルドを行いGitHub Pagesに公開する
+* GitHub Actionsで、自動でHugoのビルドを行いGitHub Pagesに公開する (初回はSettings->PagesからGithubActionを選択すること)
 ## ディレクトリ構成
 ```
 ├── content # ページ内容
