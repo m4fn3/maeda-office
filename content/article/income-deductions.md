@@ -1,6 +1,19 @@
 ---
 title: "給与収入からの各種控除額"
 date: 2025-09-16
+description: "給与収入から差し引ける給与所得控除・基礎控除・配偶者控除・配偶者特別控除・扶養控除・特定親族特別控除の金額と、年収の壁（住民税・社会保険）をまとめています。"
+lastmod: 2025-10-25
+sources:
+  - title: "国税庁 タックスアンサー No.1410 給与所得控除"
+    url: "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1410.htm"
+  - title: "国税庁 タックスアンサー No.1199 基礎控除"
+    url: "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1199.htm"
+  - title: "国税庁 タックスアンサー No.1191 配偶者控除"
+    url: "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1191.htm"
+  - title: "国税庁 タックスアンサー No.1195 配偶者特別控除"
+    url: "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1195.htm"
+  - title: "国税庁 タックスアンサー No.1180 扶養控除"
+    url: "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1180.htm"
 tags: ["税金", "給与・社保"]
 weight: 5
 ---
@@ -9,7 +22,7 @@ weight: 5
 <span class="red">給与所得控除65万円＋基礎控除95万円＝160万円までは所得0 <br>
 しかし、社会保険の壁には要注意！</span> <br>
 
-{{<imgx src="article_assets/income-deductions/fig1.png">}}
+{{<imgx alt="給与収入から給与所得控除を引いたものが給与所得、そこから基礎控除・配偶者（特別）控除・扶養控除・社会保険料控除等の所得控除を引いたものが課税所得になることを示す図。" src="article_assets/income-deductions/fig1.png">}}
 
 
 ## 給与所得控除額
@@ -82,7 +95,7 @@ weight: 5
 		<td colspan="2" rowspan="2" class="gray">改正前</td>
 	</tr>
 	<tr>
-		<td colspan="2">R7･8分</td>
+		<td colspan="2">R7・8分</td>
 		<td colspan="2">R9分以後</td>
 	</tr>
 </thead>
@@ -372,7 +385,7 @@ weight: 5
 
 ## 住民税
 
-{{<imgx src="article_assets/income-deductions/fig3.png" style="max-width: 650px">}}
+{{<imgx alt="給与収入のうち課税所得にならない部分の内訳の比較図。改正後は給与所得控除65万円と基礎控除等45万円の合計110万円、改正前は給与所得控除55万円と基礎控除等45万円の合計100万円。" src="article_assets/income-deductions/fig3.png" style="max-width: 650px">}}
 
 ## 社会保険
 **短時間労働者**の社会保険の加入条件 <br>

@@ -1,10 +1,70 @@
 baseURL = 'https://tax-maeda.com/'
 languageCode = 'ja'
+defaultContentLanguage = 'ja'
 title = '前田武志税理士事務所'
+hasCJKLanguage = true # 日本語の要約・文字数カウントを正しく扱う
+timeZone = 'Asia/Tokyo' # 日付を +09:00 で出力する
 
 [taxonomies]
   tag = "tags" # categoriesを無効化
+
 [markup]
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true # MarkdownでHTMLを許可
+
+# /llms.txt を出力する（layouts/index.llms.txt）
+[outputFormats]
+  [outputFormats.LLMS]
+    mediaType = 'text/plain'
+    baseName = 'llms'
+    isPlainText = true
+    notAlternative = true
+
+[outputs]
+  home = ['HTML', 'RSS', 'LLMS']
+
+# サイト全体で使う情報。JSON-LD・OGP・フッター・llms.txt から参照する。
+# ここを変えれば、構造化データと画面表示が同時に変わる（食い違いを防ぐ）。
+[params]
+  description = '神戸市東灘区の税理士事務所です。法人設立・個人事業の開業、会計・税務のご相談、経理指導、申告書作成、M&A・上場準備のご相談に対応します。'
+  homeTitle = '神戸市東灘区の税理士｜前田武志税理士事務所'
+  ogImage = 'images/og.png'
+  # 業務内容（業務内容ページの一覧と、JSON-LD の hasOfferCatalog の両方で使う）
+  services = [
+    '法人設立・個人事業開業のご相談・各種届出',
+    '事業運営に伴う会計・税務に関するご相談',
+    '経理指導・代行',
+    '法人税・消費税・所得税等の申告書作成',
+    'Ｍ＆Ａに関するご相談',
+    '上場準備に関するご相談',
+    '給与関連のご相談',
+  ]
+  knowsAbout = ['法人設立', '個人事業の開業', '会計', '税務', '経理指導', '法人税', '消費税', '所得税', '青色申告', '給与・源泉徴収', 'M&A', '上場準備']
+  # Search Console / Bing Webmaster の所有権確認（メタタグ方式）。取得したら値を入れる。
+  googleSiteVerification = ''
+  bingSiteVerification = ''
+
+  [params.office]
+    name = '前田武志税理士事務所'
+    nameEn = 'Takeshi Maeda TAX Accountant Office'
+    foundingYear = 2024
+    postalCode = '658-0015'
+    region = '兵庫県'
+    locality = '神戸市東灘区'
+    street = '本山南町9-1-7 エヌヴィ神戸本山504号'
+    streetDisplay = '本山南町９丁目１−７'
+    building = 'エヌヴィ神戸本山 ５０４号'
+    hours = '9:30〜17:30'
+    hoursNote = '不定休'
+    # 営業日は毎日（不定休）。JSON-LD の openingHoursSpecification に使う。
+    opens = '09:30'
+    closes = '17:30'
+    areaNote = '事務所は神戸市東灘区にあります。所在地を問わず、お気軽にご相談ください。'
+
+  [params.person]
+    name = '前田武志'
+    nameEn = 'Takeshi Maeda'
+    jobTitle = '税理士'
+    registrationNumber = '153773'
+    association = '近畿税理士会'

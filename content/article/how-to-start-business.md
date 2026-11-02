@@ -1,6 +1,13 @@
 ---
 title: "個人事業主開業の際に必要な手続"
 date: 2025-09-15
+description: "個人事業主として開業する際に、税務署・労働基準監督署・ハローワーク・社会保険事務所・都道府県税事務所へ提出する書類と期限を一覧表にまとめています。"
+lastmod: 2025-10-10
+sources:
+  - title: "国税庁 タックスアンサー No.2090 新たに事業を始めたときの届出など"
+    url: "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2090.htm"
+  - title: "国税庁 タックスアンサー No.2505 源泉所得税及び復興特別所得税の納付期限と納期の特例"
+    url: "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2505.htm"
 tags: ["起業"]
 weight: 1
 ---

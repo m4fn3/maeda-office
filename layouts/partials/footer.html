@@ -1,6 +1,12 @@
+{{- $o := .Site.Params.office -}}
+{{- $p := .Site.Params.person -}}
 <div class="footer">
-    <div><img src="{{ "images/logo_white.png" | relURL }}"></div> 
-    <span>〒658-0015 兵庫県神戸市東灘区本山南町９丁目１−７</span> <span>エヌヴィ神戸本山 ５０４号</span><br>
+    <div><img src="{{ "images/logo_white.png" | relURL }}" alt="{{ $o.name }}"></div>
+    <address>
+        <span>〒{{ $o.postalCode }} {{ $o.region }}{{ $o.locality }}{{ $o.streetDisplay }}</span> <span>{{ $o.building }}</span><br>
+        <span>営業時間：毎日 {{ $o.hours }}（{{ $o.hoursNote }}）</span><br>
+        <span>税理士登録番号 第{{ $p.registrationNumber }}号（{{ $p.association }}所属）</span>
+    </address>
     <!-- 連絡先 : 080-4131-7420（078-453-7456）<br> -->
-    <div class="copyright">(c) 2025 Takeshi Maeda TAX Accountant Office All Rights Reserved.</duv>
+    <div class="copyright">(c) 2025 {{ $o.nameEn }} All Rights Reserved.</div>
 </div>

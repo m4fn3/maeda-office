@@ -534,3 +534,118 @@ h2 {
 .footer span {
     display: inline-block;
 }
+/* ===== AIO 対応で追加した部分 ===== */
+
+/* 表の見出し行（thead 内の td を th に変えたため、見た目は従来どおりに保つ） */
+.article_content th {
+    font-weight: inherit;
+    text-align: inherit;
+}
+
+/* 記事：パンくず・日付・図の文章版・出典・執筆者 */
+.breadcrumb {
+    font-size: 13px;
+    margin: 0 0 10px 0;
+    color: #4a5a6a;
+}
+.breadcrumb a {
+    text-decoration: underline;
+}
+.article_dates {
+    font-size: 14px;
+}
+.article_content details.figure_text {
+    margin: 10px 20px 0 20px;
+    font-size: 14px;
+}
+.article_content details.figure_text summary {
+    cursor: pointer;
+    color: #007B8F;
+}
+.article_content details.figure_text ol {
+    margin: 8px 0;
+    padding-left: 24px;
+}
+.article_content .article_sources {
+    margin: 10px 20px 0 20px;
+    padding-left: 24px;
+    font-size: 14px;
+}
+.article_content .article_sources a {
+    text-decoration: underline;
+}
+.article_content .author_box {
+    margin: 40px 20px 0 20px;
+    padding: 12px 16px;
+    max-width: 750px;
+    background: #fff;
+    border: 1px solid #b3e3ea;
+    border-radius: 5px;
+    font-size: 14px;
+}
+.article_content .author_box p {
+    padding: 0;
+    margin: 6px 0;
+}
+.article_content .author_box a {
+    text-decoration: underline;
+}
+.article_content .author_box_head {
+    font-weight: 600;
+    color: #007B8F;
+}
+.article_content .author_box_note {
+    font-size: 12.5px;
+    color: #4a5a6a;
+}
+
+/* トップ：事務所概要 */
+.main .office_info {
+    margin: 10px 20px;
+    max-width: 730px;
+    border-collapse: collapse;
+}
+.main .office_info td {
+    padding: 8px 12px;
+    border-bottom: 1px solid #b3e3ea;
+    vertical-align: top;
+}
+.main .office_info td:first-child {
+    width: 100px;
+    white-space: nowrap;
+    color: #007B8F;
+}
+.main .office_info ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+/* 業務内容：よくある質問 */
+.main .faq {
+    margin: 10px 20px;
+    max-width: 730px;
+}
+.main .faq dt {
+    font-weight: 600;
+    margin-top: 16px;
+}
+.main .faq dt::before {
+    content: "Q. ";
+    color: #007B8F;
+}
+.main .faq dd {
+    margin: 4px 0 0 0;
+}
+.main .faq dd a {
+    text-decoration: underline;
+}
+
+/* フッター：住所ブロック */
+.footer address {
+    font-style: normal;
+    line-height: 1.8;
+}
+
+.nowrap {
+    white-space: nowrap;
+}

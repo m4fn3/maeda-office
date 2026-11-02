@@ -56,6 +56,8 @@ jobs:
           hugo \
             --minify \
             --baseURL "${{ steps.pages.outputs.base_url }}/"
+      - name: Check SEO / AIO output
+        run: python3 scripts/check_seo.py public tax-maeda.com
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
@@ -72,3 +74,12 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+      # Bing など IndexNow 対応の検索エンジンにサイト更新を通知する（失敗してもデプロイは成功扱い）
+      - name: Notify IndexNow
+        continue-on-error: true
+        run: |
+          KEY=e8207500828d8a851244d9957a9101e5
+          URLS=$(curl -fsS https://tax-maeda.com/sitemap.xml | grep -o '<loc>[^<]*' | sed 's/<loc>//' | python3 -c 'import sys,json; print(json.dumps([l.strip() for l in sys.stdin if l.strip()]))')
+          curl -sS -o /dev/null -w "IndexNow: HTTP %{http_code}\n" -X POST https://api.indexnow.org/indexnow \
+            -H 'Content-Type: application/json; charset=utf-8' \
+            -d "{\"host\":\"tax-maeda.com\",\"key\":\"$KEY\",\"keyLocation\":\"https://tax-maeda.com/$KEY.txt\",\"urlList\":$URLS}"

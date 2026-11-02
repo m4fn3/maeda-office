@@ -1,6 +1,8 @@
 {{ define "main" }}
+{{- $o := .Site.Params.office -}}
+{{- $p := .Site.Params.person -}}
 <div class="main">
-    <img src="{{ "images/home_top.jpeg" | relURL }}" class="top_eyecatch">
+    <img src="{{ "images/home_top.jpeg" | relURL }}" class="top_eyecatch" alt="前田武志税理士事務所のトップ画像（青い海と空）">
     <h1><span>ご挨拶</span></h1>
     <p>
         前田武志税理士事務所のウェブサイトへようこそお越しいただきました。<br>
@@ -9,5 +11,40 @@
         また、<a href="{{ "contact" | relURL }}">お問い合わせ</a>ページからお気軽にご連絡ください。<br>
         どうぞよろしくお願いいたします。
     </p>
+    <h2><span>事務所概要</span></h2>
+    <table class="office_info">
+        <tr>
+            <td>事務所名</td>
+            <td>{{ $o.name }}</td>
+        </tr>
+        <tr>
+            <td>代表</td>
+            <td>{{ $p.name }}（{{ $p.jobTitle }}）／<a href="{{ "profile" | relURL }}">プロフィール</a></td>
+        </tr>
+        <tr>
+            <td>税理士登録</td>
+            <td>登録番号 第{{ $p.registrationNumber }}号（{{ $p.association }}所属）</td>
+        </tr>
+        <tr>
+            <td>所在地</td>
+            <td>〒{{ $o.postalCode }} {{ $o.region }}{{ $o.locality }}{{ $o.streetDisplay }} <span class="nowrap">{{ $o.building }}</span></td>
+        </tr>
+        <tr>
+            <td>営業時間</td>
+            <td>毎日 {{ $o.hours }}（{{ $o.hoursNote }}）</td>
+        </tr>
+        <tr>
+            <td>対応地域</td>
+            <td>{{ $o.areaNote }}</td>
+        </tr>
+        <tr>
+            <td>業務内容</td>
+            <td>
+                <ul>
+                    {{ range .Site.Params.services }}<li>{{ . }}</li>{{ end }}
+                </ul>
+            </td>
+        </tr>
+    </table>
 </div>
 {{ end }}

@@ -1,6 +1,15 @@
 ---
 title: "配当所得の課税方式"
 date: 2025-10-09
+description: "上場株式等の配当金について、申告不要・総合課税・申告分離課税のどれが有利になるかを、配当控除や損益通算の観点から解説します。"
+lastmod: 2025-10-10
+sources:
+  - title: "国税庁 タックスアンサー No.1330 配当金を受け取ったとき(配当所得)"
+    url: "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1330.htm"
+  - title: "国税庁 タックスアンサー No.1331 上場株式等の配当等に係る申告分離課税制度"
+    url: "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1331.htm"
+  - title: "国税庁 タックスアンサー No.1250 配当所得があるとき(配当控除)"
+    url: "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1250.htm"
 tags: ["税金"]
 weight: 4
 ---
@@ -12,8 +21,8 @@ weight: 4
 <br>
 原則、上場株式などの配当金は源泉徴収されているため、申告不要（源泉分離課税）とすることができます。<br>
 しかしながら、場合によっては申告した方が有利になる場合もあり、その際に<br>
-- 総合課税･･･他の所得と合算して申告する<br>
-- 申告分離課税･･･他の所得とは切り離して申告する<br>
+- 総合課税・・・他の所得と合算して申告する<br>
+- 申告分離課税・・・他の所得とは切り離して申告する<br>
 の２つの申告方法から選ぶことができます。<br>
 
 ## 総合課税を選択<br>

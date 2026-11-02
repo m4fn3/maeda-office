@@ -1,0 +1,176 @@
+{{- /*
+    JSON-LD（構造化データ）。1ページ1つの @graph にまとめ、@id で相互に参照する。
+      #office  … 事務所（AccountingService）  全ページ共通
+      #person  … 前田武志（Person）           全ページ共通
+      #website … WebSite                       全ページ共通
+      ページ本体 … ページの種類ごと（WebPage / ProfilePage / ContactPage / CollectionPage / FAQPage / Article）
+      BreadcrumbList … トップ以外の全ページ
+    事務所情報の値は hugo.toml の [params] から取る。画面表示と同じ値なので食い違わない。
+*/ -}}
+{{- $site := .Site -}}
+{{- $home := $site.Home.Permalink -}}
+{{- $o := $site.Params.office -}}
+{{- $p := $site.Params.person -}}
+{{- $officeID := printf "%s#office" $home -}}
+{{- $personID := printf "%s#person" $home -}}
+{{- $websiteID := printf "%s#website" $home -}}
+{{- $profileURL := (site.GetPage "/profile").Permalink -}}
+{{- $contactURL := (site.GetPage "/contact").Permalink -}}
+{{- $serviceURL := (site.GetPage "/service").Permalink -}}
+{{- $articleURL := (site.GetPage "/article").Permalink -}}
+{{- $logoURL := absURL "images/logo_black.png" -}}
+{{- $ogImage := absURL $site.Params.ogImage -}}
+
+{{- $graph := slice -}}
+
+{{- /* 事務所 */ -}}
+{{- $services := slice -}}
+{{- range $site.Params.services -}}
+  {{- $services = $services | append (dict "@type" "Offer" "itemOffered" (dict "@type" "Service" "name" . "provider" (dict "@id" $officeID))) -}}
+{{- end -}}
+{{- $office := dict
+  "@type" "AccountingService"
+  "@id" $officeID
+  "name" $o.name
+  "alternateName" (slice $o.nameEn)
+  "url" $home
+  "description" $site.Params.description
+  "logo" (dict "@type" "ImageObject" "url" $logoURL)
+  "image" $ogImage
+  "foundingDate" (string $o.foundingYear)
+  "founder" (dict "@id" $personID)
+  "address" (dict
+    "@type" "PostalAddress"
+    "addressCountry" "JP"
+    "postalCode" $o.postalCode
+    "addressRegion" $o.region
+    "addressLocality" $o.locality
+    "streetAddress" $o.street)
+  "areaServed" (slice (dict "@type" "City" "name" "神戸市") (dict "@type" "Country" "name" "日本"))
+  "openingHoursSpecification" (dict
+    "@type" "OpeningHoursSpecification"
+    "dayOfWeek" (slice "Monday" "Tuesday" "Wednesday" "Thursday" "Friday" "Saturday" "Sunday")
+    "opens" $o.opens
+    "closes" $o.closes)
+  "contactPoint" (dict
+    "@type" "ContactPoint"
+    "contactType" "customer service"
+    "url" $contactURL
+    "availableLanguage" "ja")
+  "knowsAbout" $site.Params.knowsAbout
+  "hasOfferCatalog" (dict "@type" "OfferCatalog" "name" "業務内容" "itemListElement" $services)
+-}}
+{{- $graph = $graph | append $office -}}
+
+{{- /* 代表者 */ -}}
+{{- $person := dict
+  "@type" "Person"
+  "@id" $personID
+  "name" $p.name
+  "alternateName" $p.nameEn
+  "jobTitle" $p.jobTitle
+  "url" $profileURL
+  "image" (absURL "images/profile.jpeg")
+  "description" "（有限責任）監査法人トーマツで監査・調査・経理指導等を経験した後、上場準備会社等で上場準備・管理体制の確立・買収調査などに携わり、2024年に前田武志税理士事務所を開業。"
+  "worksFor" (dict "@id" $officeID)
+  "alumniOf" (dict "@type" "CollegeOrUniversity" "name" "神戸大学")
+  "memberOf" (dict "@type" "Organization" "name" $p.association)
+  "hasCredential" (dict
+    "@type" "EducationalOccupationalCredential"
+    "credentialCategory" "license"
+    "name" (printf "税理士（登録番号 第%s号）" $p.registrationNumber)
+    "identifier" $p.registrationNumber)
+  "knowsAbout" $site.Params.knowsAbout
+-}}
+{{- $graph = $graph | append $person -}}
+
+{{- /* WebSite */ -}}
+{{- $website := dict
+  "@type" "WebSite"
+  "@id" $websiteID
+  "url" $home
+  "name" $site.Title
+  "inLanguage" "ja"
+  "publisher" (dict "@id" $officeID)
+-}}
+{{- $graph = $graph | append $website -}}
+
+{{- /* ページ本体 */ -}}
+{{- $desc := $site.Params.description -}}
+{{- with .Params.description }}{{ $desc = . }}{{ end -}}
+{{- $pageNode := dict
+  "@type" "WebPage"
+  "@id" (printf "%s#webpage" .Permalink)
+  "url" .Permalink
+  "name" .Title
+  "description" $desc
+  "inLanguage" "ja"
+  "isPartOf" (dict "@id" $websiteID)
+  "about" (dict "@id" $officeID)
+-}}
+{{- if not .IsHome -}}
+  {{- $pageNode = merge $pageNode (dict "dateModified" (.Lastmod.Format "2006-01-02") "breadcrumb" (dict "@id" (printf "%s#breadcrumb" .Permalink))) -}}
+{{- end -}}
+
+{{- if .IsHome -}}
+  {{- $pageNode = merge $pageNode (dict "primaryImageOfPage" (dict "@type" "ImageObject" "url" $ogImage)) -}}
+{{- else if eq .RelPermalink (site.GetPage "/profile").RelPermalink -}}
+  {{- $pageNode = merge $pageNode (dict "@type" "ProfilePage" "mainEntity" (dict "@id" $personID) "about" (dict "@id" $personID)) -}}
+{{- else if eq .RelPermalink (site.GetPage "/contact").RelPermalink -}}
+  {{- $pageNode = merge $pageNode (dict "@type" "ContactPage") -}}
+{{- else if eq .RelPermalink (site.GetPage "/article").RelPermalink -}}
+  {{- $items := slice -}}
+  {{- range $i, $a := .Pages -}}
+    {{- $items = $items | append (dict "@type" "ListItem" "position" (add $i 1) "url" $a.Permalink "name" $a.Title) -}}
+  {{- end -}}
+  {{- $pageNode = merge $pageNode (dict "@type" "CollectionPage" "mainEntity" (dict "@type" "ItemList" "itemListElement" $items)) -}}
+{{- else if and .IsPage (eq .Section "article") -}}
+  {{- $article := dict
+    "@type" "Article"
+    "@id" (printf "%s#article" .Permalink)
+    "headline" .Title
+    "description" $desc
+    "url" .Permalink
+    "datePublished" (.Date.Format "2006-01-02")
+    "dateModified" (.Lastmod.Format "2006-01-02")
+    "inLanguage" "ja"
+    "author" (dict "@id" $personID)
+    "publisher" (dict "@id" $officeID)
+    "isPartOf" (dict "@id" $websiteID)
+    "mainEntityOfPage" (dict "@type" "WebPage" "@id" (printf "%s#webpage" .Permalink))
+    "image" $ogImage
+    "keywords" .Params.tags
+  -}}
+  {{- with .Params.sources -}}
+    {{- $cites := slice -}}
+    {{- range . -}}
+      {{- $cites = $cites | append (dict "@type" "WebPage" "name" .title "url" .url) -}}
+    {{- end -}}
+    {{- $article = merge $article (dict "citation" $cites) -}}
+  {{- end -}}
+  {{- $graph = $graph | append $article -}}
+{{- end -}}
+
+{{- /* FAQ（front matter の faq を使う） */ -}}
+{{- with .Params.faq -}}
+  {{- $qs := slice -}}
+  {{- range . -}}
+    {{- $qs = $qs | append (dict "@type" "Question" "name" .q "acceptedAnswer" (dict "@type" "Answer" "text" (.a | markdownify | plainify))) -}}
+  {{- end -}}
+  {{- $pageNode = merge $pageNode (dict "@type" "FAQPage" "mainEntity" $qs) -}}
+{{- end -}}
+{{- $graph = $graph | append $pageNode -}}
+
+{{- /* パンくず */ -}}
+{{- if not .IsHome -}}
+  {{- $crumbs := slice (dict "@type" "ListItem" "position" 1 "name" "トップ" "item" $home) -}}
+  {{- if and .IsPage (eq .Section "article") -}}
+    {{- $crumbs = $crumbs | append (dict "@type" "ListItem" "position" 2 "name" "お役立ち豆知識" "item" $articleURL) -}}
+    {{- $crumbs = $crumbs | append (dict "@type" "ListItem" "position" 3 "name" .Title "item" .Permalink) -}}
+  {{- else -}}
+    {{- $crumbs = $crumbs | append (dict "@type" "ListItem" "position" 2 "name" .Title "item" .Permalink) -}}
+  {{- end -}}
+  {{- $graph = $graph | append (dict "@type" "BreadcrumbList" "@id" (printf "%s#breadcrumb" .Permalink) "itemListElement" $crumbs) -}}
+{{- end -}}
+
+<script type="application/ld+json">{{ dict "@context" "https://schema.org" "@graph" $graph | jsonify | safeJS }}</script>

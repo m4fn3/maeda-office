@@ -1,0 +1,35 @@
+{{- $o := .Site.Params.office -}}
+{{- $p := .Site.Params.person -}}
+# {{ $o.name }}
+
+> {{ .Site.Params.description }}
+
+## 事務所情報
+
+- 事務所名: {{ $o.name }}（{{ $o.nameEn }}）
+- 代表: {{ $p.name }}（{{ $p.jobTitle }}、登録番号 第{{ $p.registrationNumber }}号、{{ $p.association }}所属）
+- 所在地: 〒{{ $o.postalCode }} {{ $o.region }}{{ $o.locality }}{{ $o.street }}
+- 営業時間: 毎日 {{ $o.hours }}（{{ $o.hoursNote }}）
+- 対応地域: {{ $o.areaNote }}
+- 連絡方法: [お問い合わせフォーム]({{ (site.GetPage "/contact").Permalink }})（営業関連のご連絡はお断りしています）
+
+## 業務内容
+
+{{ range .Site.Params.services }}- {{ . }}
+{{ end }}
+## ページ
+
+{{ range (slice "/profile" "/service" "/contact") -}}
+{{- with site.GetPage . -}}
+- [{{ .Title }}]({{ .Permalink }}){{ with .Params.description }}: {{ . }}{{ end }}
+{{ end -}}
+{{- end }}
+## お役立ち豆知識（税務・会計の解説記事）
+
+{{ range (site.GetPage "/article").Pages -}}
+- [{{ .Title }}]({{ .Permalink }}){{ with .Params.description }}: {{ . }}{{ end }}（公開 {{ .Date.Format "2006-01-02" }}／更新 {{ .Lastmod.Format "2006-01-02" }}）
+{{ end }}
+## 注意
+
+- 記事は一般的な情報の提供を目的としており、個別の事情に応じた税務判断は専門家にご相談ください。
+- 税制は改正されることがあります。各記事の更新日と、記載の出典（国税庁等）をご確認ください。

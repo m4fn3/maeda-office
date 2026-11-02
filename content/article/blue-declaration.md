@@ -1,6 +1,13 @@
 ---
 title: "青色申告について"
 date: 2025-11-23
+description: "青色申告特別控除（65万円・55万円・10万円）の3種類と白色申告との違いを、所得の種類・申請・提出書類・記帳方法・優遇措置の比較表でまとめています。"
+lastmod: 2025-12-04
+sources:
+  - title: "国税庁 タックスアンサー No.2070 青色申告制度"
+    url: "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2070.htm"
+  - title: "国税庁 タックスアンサー No.2072 青色申告特別控除"
+    url: "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2072.htm"
 tags: ["税金"]
 # weight: 
 ---
