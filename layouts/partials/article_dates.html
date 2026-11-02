@@ -1,0 +1,9 @@
+{{- /* 公開日と更新日（記事ページと記事一覧で共通）。更新日は公開日と違うときだけ出す */ -}}
+{{- $pub := .Date.Format "2006-01-02" -}}
+{{- $mod := .Lastmod.Format "2006-01-02" -}}
+<span class="article_dates">
+    <span class="date_item"><span class="date_label">公開</span> <time datetime="{{ $pub }}">{{ .Date.Format "2006/01/02" }}</time></span>
+    {{- if ne $mod $pub }}
+    <span class="date_item"><span class="date_label">更新</span> <time datetime="{{ $mod }}">{{ .Lastmod.Format "2006/01/02" }}</time></span>
+    {{- end }}
+</span>

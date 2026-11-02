@@ -12,12 +12,7 @@
         {{ range .GetTerms "tags" }}
             <a class="article_list_tag" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
         {{ end }}
-        <span class="article_dates">
-            <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006/01/02" }}</time> 公開
-            {{- if ne (.Lastmod.Format "2006-01-02") (.Date.Format "2006-01-02") }}
-            ／ <time datetime="{{ .Lastmod.Format "2006-01-02" }}">{{ .Lastmod.Format "2006/01/02" }}</time> 更新
-            {{- end }}
-        </span>
+        {{ partial "article_dates.html" . }}
     </div>
     <h1><span>{{ .Title }}</span></h1>
     <div class="article_content">
@@ -38,13 +33,22 @@
         </ul>
         {{ end }}
 
-        <aside class="author_box">
-            <div class="author_box_head">この記事の執筆者</div>
-            <p>
-                <a href="{{ $profile.RelPermalink }}">{{ $p.name }}</a>（{{ $p.jobTitle }}・{{ $p.association }}所属／税理士登録番号 第{{ $p.registrationNumber }}号）<br>
-                {{ $o.region }}{{ $o.locality }}で{{ $o.name }}を運営しています。
-            </p>
+        <aside class="author_box" aria-label="執筆者">
+            <div class="author_box_main">
+                <img class="author_box_photo" src="{{ "images/profile.jpeg" | relURL }}" alt="{{ $p.name }}" width="64" height="64" loading="lazy">
+                <div class="author_box_body">
+                    <div class="author_box_label">この記事の執筆者</div>
+                    <div class="author_box_name">
+                        <a href="{{ $profile.RelPermalink }}">{{ $p.name }}</a>
+                        <span class="author_box_badge">{{ $p.jobTitle }}</span>
+                    </div>
+                    <div class="author_box_meta">{{ $p.association }}所属 ／ 登録番号 第{{ $p.registrationNumber }}号</div>
+                    <p class="author_box_text">{{ $o.region }}{{ $o.locality }}で{{ $o.name }}を運営しています。</p>
+                    <a class="author_box_link" href="{{ $profile.RelPermalink }}">プロフィールを見る &rarr;</a>
+                </div>
+            </div>
             <p class="author_box_note">
+                <span class="author_box_note_mark">ご注意</span>
                 本記事は一般的な情報の提供を目的としています。税制は改正されることがあり、個別の事情によって取扱いが異なる場合があります。具体的な判断は、所轄の税務署または専門家にご確認ください。
             </p>
         </aside>

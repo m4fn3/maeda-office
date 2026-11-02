@@ -18,9 +18,9 @@
                     {{ range .GetTerms "tags" }}
                         <a class="article_list_tag" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
                     {{ end }}
-                    <!-- <span>{{ .Date.Format "2006/01/02" }}</span> -->
                 </div>
                 <a class="article_list_title" href="{{ .RelPermalink }}">{{ .Title }}</a>
+                {{ partial "article_dates.html" . }}
             </li>
         {{ end }}
     </ul>
