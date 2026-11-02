@@ -649,13 +649,21 @@ h2 {
 }
 
 /* 記事末尾：執筆者（見出し・タグ・ボタン・写真の枠など、サイトの他の部分と同じ部品で作る） */
-.article_content .author_box {
-    margin: 40px 0 0 0;
+.article_content .author_box { /* 本文の章ではなく末尾の付属情報なので、見出しではなく罫線で区切る */
+    margin: 48px 20px 0 20px;
+    padding-top: 14px;
+    border-top: 1px solid #d8d8d8;
+}
+.author_box_label {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: #007B8F;
 }
 .author_box_main {
     display: flex;
     gap: 16px;
-    margin: 12px 20px 0 20px;
+    margin: 10px 0 0 0;
 }
 .author_box_avatar { /* 枠なしの四角（角だけ丸め）。顔にズームして切り抜く */
     flex: none;
@@ -709,9 +717,9 @@ h2 {
     opacity: 0.7;
 }
 .article_content .author_box p.author_box_note {
-    margin: 18px 20px 0 20px;
+    margin: 16px 0 0 0;
     padding: 12px 0 0 0;
-    border-top: 1px solid #d8d8d8;
+    border-top: 1px dashed #d8d8d8;
     font-size: 12.5px;
     line-height: 1.7;
     color: #4a5a6a;
