@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 """ビルド結果（public/）の AIO / SEO まわりの整合性チェック。
 
-使い方:  hugo --minify && python3 scripts/check_seo.py [public ディレクトリ] [期待するホスト]
+使い方:  hugo --minify && python3 scripts/check_seo.py [public ディレクトリ] [ビルドの baseURL のホスト]
+  ビルドの baseURL のホストは、本番（tax-maeda.com）以外でビルドする場合（個人リポジトリの github.io など）に指定する。
+  robots.txt の Sitemap は常に本番のホスト（tax-maeda.com）であることを確認する。
 失敗があれば終了コード 1（GitHub Actions のビルドを止める）。
 """
 import glob
@@ -13,6 +15,7 @@ from urllib.parse import urlparse
 
 public = sys.argv[1] if len(sys.argv) > 1 else "public"
 host = sys.argv[2] if len(sys.argv) > 2 else "tax-maeda.com"
+PRODUCTION_HOST = "tax-maeda.com"
 errors = []
 
 
@@ -32,7 +35,7 @@ for name in ["robots.txt", "llms.txt", "sitemap.xml", "index.xml", "favicon.ico"
 
 if os.path.exists(os.path.join(public, "robots.txt")):
     robots = read(os.path.join(public, "robots.txt"))
-    if f"Sitemap: https://{host}/sitemap.xml" not in robots:
+    if f"Sitemap: https://{PRODUCTION_HOST}/sitemap.xml" not in robots:
         err("robots.txt の Sitemap の URL が違います")
 
 # --- 公開する JPEG に EXIF（位置情報・撮影機種など）が残っていないか

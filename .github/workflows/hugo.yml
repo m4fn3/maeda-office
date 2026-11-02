@@ -57,7 +57,8 @@ jobs:
             --minify \
             --baseURL "${{ steps.pages.outputs.base_url }}/"
       - name: Check SEO / AIO output
-        run: python3 scripts/check_seo.py public tax-maeda.com
+        # tax-maeda.com は maeda-office/maeda-office（フォーク）から配信される。個人リポジトリでは github.io でビルドされるため、ホストはビルドの baseURL から取る
+        run: python3 scripts/check_seo.py public "$(echo '${{ steps.pages.outputs.base_url }}' | sed -E 's#https?://([^/]+).*#\1#')"
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
@@ -76,6 +77,8 @@ jobs:
         uses: actions/deploy-pages@v4
       # Bing など IndexNow 対応の検索エンジンにサイト更新を通知する（失敗してもデプロイは成功扱い）
       - name: Notify IndexNow
+        # 本番（tax-maeda.com）を配信しているフォークでだけ実行する
+        if: github.repository == 'maeda-office/maeda-office'
         continue-on-error: true
         run: |
           KEY=e8207500828d8a851244d9957a9101e5
