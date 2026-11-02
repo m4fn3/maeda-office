@@ -1,13 +1,13 @@
+{{- /* フッターは事務所の基本情報だけ。個人情報の取扱いはお問い合わせフォーム、掲載内容の注意書きは税務ガイドの各ページ末尾に置く */ -}}
 {{- $o := .Site.Params.office -}}
 {{- $p := .Site.Params.person -}}
-<div class="footer">
-    <div><img src="{{ "images/logo_white.png" | relURL }}" alt="{{ $o.name }}"></div>
-    <address>
-        <span>〒{{ $o.postalCode }} {{ $o.region }}{{ $o.locality }}{{ $o.streetDisplay | replaceRE "([０-９0-9]+丁目.*)$" "<span class=\"nowrap\">$1</span>" | safeHTML }}</span> <span class="nowrap">{{ $o.building }}</span><br>
-        <span>営業時間：毎日 {{ $o.hours }}（{{ $o.hoursNote }}）</span><br>
-        <span>税理士登録番号 第{{ $p.registrationNumber }}号（{{ $p.association }}所属）</span>
-    </address>
-    <div class="footer_links"><a href="{{ "privacy" | relURL }}">個人情報の取扱い</a></div>
-    <div class="footer_note">掲載内容は一般的な情報の提供を目的としています。個別の事情に応じた判断は、専門家にご相談ください。</div>
-    <div class="copyright">(c) {{ $o.foundingYear }}-{{ now.Year }} {{ $o.nameEn }} All Rights Reserved.</div>
-</div>
+<footer class="footer">
+    <div class="footer_inner">
+        <a href="{{ "" | relURL }}"><img src="{{ "images/logo_white.png" | relURL }}" alt="{{ $o.name }}"></a>
+        <address>
+            <span>〒{{ $o.postalCode }} {{ $o.region }}{{ $o.locality }}{{ $o.streetDisplay }} {{ $o.building }}</span><br>
+            <span>営業時間 毎日 {{ $o.hours }}（{{ $o.hoursNote }}）</span><span class="sep">|</span><span>税理士登録番号 第{{ $p.registrationNumber }}号（{{ $p.association }}所属）</span>
+        </address>
+    </div>
+    <div class="copyright">&copy; {{ $o.foundingYear }}-{{ now.Year }} {{ $o.nameEn }}</div>
+</footer>

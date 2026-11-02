@@ -2,61 +2,94 @@
 {{- $p := .Site.Params.person -}}
 <div class="main">
     <h1><span>プロフィール</span></h1>
-    <img src="{{ "images/profile.jpeg" | relURL }}" class="profile_image" alt="前田武志（税理士）の写真">
-    <p>
-        前田武志税理士事務所の代表、前田武志です。<br>
-        （有限責任）監査法人トーマツで、監査業務に加え、調査業務や経理指導などを幅広く経験しました。その後は上場準備会社に転職し、上場準備業務、管理体制の確立、効率化の推進、買収調査・交渉などに携わってきました。<br>
-        こうした経験を、幅広い事業者の発展に生かしたいと考え、2024年に税理士事務所を開業しました。<br>
-    </p>
+    <div class="profile_intro">
+        <img src="{{ "images/profile.jpeg" | relURL }}" class="profile_image" alt="前田武志（税理士）の写真">
+        <p>
+            前田武志税理士事務所の代表、前田武志です。神戸大学経営学部を卒業後、公認会計士試験に合格し、（有限責任）監査法人トーマツに入所しました。監査法人では、監査業務に加え、調査業務や経理指導などを幅広く経験しました。
+        </p>
+        <p>
+            その後は事業会社に転じ、バイオ、半導体、人材派遣、食肉加工卸、資産管理運用など、業種の異なる複数の会社で経理部長・管理本部長・ＣＦＯ等を務めました。上場準備会社では、上場準備業務、管理体制の確立、業務の効率化の推進、買収調査・交渉などに携わり、経営に近い立場で会計・税務の判断を担ってきました。
+        </p>
+        <p>
+            監査する側と、会社の内側で実務を担う側の両方を経験したことで、制度の決まりと現場の事情の両方を踏まえたご提案ができると考えています。こうした経験を、これから事業を始める方から成長を目指す企業まで、幅広い事業者の発展に生かしたいと考え、2024年に税理士事務所を開業しました。
+        </p>
+        <p>
+            「何から相談すればよいか分からない」という段階でもかまいません。事業の状況やお考えを伺いながら、一緒に最適な方法を考えていきます。
+        </p>
+    </div>
+
     <h2><span>対応できる領域</span></h2>
-    <ul class="profile_areas">
-        <li>
-            <strong><a href="{{ "service/komon/" | relURL }}">会計・税務、経理指導</a></strong><br>
-            監査法人での監査・調査・経理指導の経験と、事業会社で経理部長・管理本部長・ＣＦＯとして実務を担った経験があります。
+    <ul class="cards cards_3">
+        <li class="card">
+            <span class="card_title">会計・税務、経理指導</span>
+            <span class="card_text">監査法人での監査・調査・経理指導の経験と、事業会社で経理部長・管理本部長・ＣＦＯとして実務を担った経験があります。</span>
+            <a class="text_link" href="{{ "service/komon/" | relURL }}">顧問契約について &rarr;</a>
         </li>
-        <li>
-            <strong><a href="{{ "service/ipo-ma/" | relURL }}">上場準備・管理体制</a></strong><br>
-            上場準備会社で、上場準備業務、管理体制の確立、効率化の推進に携わりました。
+        <li class="card">
+            <span class="card_title">上場準備・管理体制</span>
+            <span class="card_text">上場準備会社で、上場準備業務、管理体制の確立、業務の効率化の推進に携わりました。</span>
+            <a class="text_link" href="{{ "service/ipo-ma/" | relURL }}">上場準備のご相談について &rarr;</a>
         </li>
-        <li>
-            <strong><a href="{{ "service/ipo-ma/" | relURL }}">Ｍ＆Ａ</a></strong><br>
-            買収調査・交渉などに携わりました。
+        <li class="card">
+            <span class="card_title">Ｍ＆Ａ</span>
+            <span class="card_text">事業会社の立場で、買収調査（デューデリジェンス）や交渉などに携わりました。</span>
+            <a class="text_link" href="{{ "service/ipo-ma/" | relURL }}">M&amp;Aのご相談について &rarr;</a>
         </li>
     </ul>
+
     <h2><span>ご相談にあたって</span></h2>
-    <p>
-        単に作業を機械的に行うだけでなく、個々の状況に応じた最適な方法をご相談者とともに考え、事業の発展に貢献したいと考えています。
-    </p>
+    <div class="panel">
+        <ul class="points_list">
+            <li>
+                <span class="points_num">1.</span>
+                <span class="points_title">状況に合わせた方法を、一緒に考えます</span>
+                <span class="points_text">単に作業を機械的に行うだけでなく、事業の状況やこれからの計画を伺い、最適な方法をご相談者とともに考えます。</span>
+            </li>
+            <li>
+                <span class="points_num">2.</span>
+                <span class="points_title">判断の理由まで、分かりやすくお伝えします</span>
+                <span class="points_text">専門用語をできるだけ使わず、選択肢とそれぞれの理由をご説明します。納得して決めていただくことを大切にしています。</span>
+            </li>
+            <li>
+                <span class="points_num">3.</span>
+                <span class="points_title">目の前の申告だけでなく、その先も見据えます</span>
+                <span class="points_text">監査法人と事業会社での経験を生かし、経理の体制づくりや事業の成長まで見据えてご提案します。</span>
+            </li>
+        </ul>
+    </div>
+
     <h2><span>資&emsp;格</span></h2>
-    <table class="profile_history">
+    <table class="info_table">
         <tr>
-            <td>税理士</td>
+            <th scope="row">税理士</th>
             <td>登録番号 第{{ $p.registrationNumber }}号（{{ $p.association }}所属）</td>
         </tr>
         <tr>
-            <td>1995年</td>
+            <th scope="row">1995年</th>
             <td>公認会計士試験合格</td>
         </tr>
     </table>
+
     <h2><span>略&emsp;歴</span></h2>
-    <table class="profile_history">
+    <table class="info_table">
         <tr>
-            <td>1994年</td>
+            <th scope="row">1994年</th>
             <td>神戸大学経営学部 卒業</td>
         </tr>
         <tr>
-            <td>1995年</td>
+            <th scope="row">1995年</th>
             <td>公認会計士試験合格<br>（有限責任）監査法人トーマツ 入所</td>
         </tr>
         <tr>
-            <td>2003年</td>
+            <th scope="row">2003年</th>
             <td>一般企業（バイオ、半導体、人材派遣、食肉加工卸、資産管理運用など）に勤務し、経理部長、管理本部長、ＣＦＯ等の職位で活動</td>
         </tr>
         <tr>
-            <td>2024年</td>
+            <th scope="row">2024年</th>
             <td>前田武志税理士事務所 開業</td>
         </tr>
     </table>
-    {{ partial "cta.html" (dict "title" "ご相談をお考えの方へ" "text" "ご相談内容をお知らせください。内容を確認のうえ、ご連絡します。" "topic" "other" "location" "profile") }}
+
+    {{ partial "cta.html" (dict "title" "まずは状況をお聞かせください" "text" "開業・法人設立から、日々の会計・税務、上場準備まで、ご相談内容を確認のうえご連絡します。" "topic" "other" "location" "profile") }}
 </div>
 {{ end }}

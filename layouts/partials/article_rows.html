@@ -1,0 +1,17 @@
+{{- /* 記事の一覧（1行ずつ全体がリンク）。引数: ページのリスト。種別（genre）は画面には出さない（GA4 の計測にだけ使う） */ -}}
+<ul class="article_rows">
+    {{ range . }}
+    <li>
+        <a class="article_row" href="{{ .RelPermalink }}">
+            <span class="article_row_body">
+                <span class="article_row_meta">
+                    {{ partial "article_dates.html" . }}
+                </span>
+                <span class="article_row_title">{{ .Title }}</span>
+                {{ with .Params.description }}<span class="article_row_desc">{{ . }}</span>{{ end }}
+            </span>
+            <span class="article_row_arrow" aria-hidden="true"></span>
+        </a>
+    </li>
+    {{ end }}
+</ul>

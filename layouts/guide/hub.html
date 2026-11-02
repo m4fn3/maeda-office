@@ -1,20 +1,20 @@
 {{ define "main" }}
+{{- $current := . -}}
+{{- $pages := .RegularPages.ByWeight -}}
 <div class="main">
     {{ partial "breadcrumb.html" . }}
     <h1><span>{{ .Title }}</span></h1>
     <div class="hub_lead">{{ .Content }}</div>
-    <h2><span>{{ .Title }}の記事</span></h2>
-    <ul class="article_list">
-        {{ range .RegularPages.ByWeight }}
-        <li>
-            <div class="article_list_tag_box">
-                {{ partial "article_dates.html" . }}
-            </div>
-            <a class="article_list_title" href="{{ .RelPermalink }}">{{ .Title }}</a>
-            {{ with .Params.description }}<div class="article_list_desc">{{ . }}</div>{{ end }}
-        </li>
+    <h2><span>{{ .Title }}の記事（{{ len $pages }}本）</span></h2>
+    {{ partial "article_rows.html" $pages }}
+    {{ partial "cta.html" (dict "title" .Params.cta_title "text" .Params.cta_text "service" .Params.service "topic" .Params.topic "location" "hub") }}
+
+    <h2><span>ほかのテーマ</span></h2>
+    <ul class="hub_nav" aria-label="テーマ">
+        {{ range .Parent.Sections.ByWeight }}
+        <li{{ if eq .RelPermalink $current.RelPermalink }} class="current"{{ end }}><a href="{{ .RelPermalink }}"{{ if eq .RelPermalink $current.RelPermalink }} aria-current="page"{{ end }}>{{ .Title }}<small>{{ len .RegularPages }}本</small></a></li>
         {{ end }}
     </ul>
-    {{ partial "cta.html" (dict "title" .Params.cta_title "text" .Params.cta_text "service" .Params.service "topic" .Params.topic "location" "hub") }}
+    {{ partial "content_note.html" . }}
 </div>
 {{ end }}

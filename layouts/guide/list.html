@@ -1,11 +1,25 @@
 {{ define "main" }}
+{{- $hubs := .Sections.ByWeight -}}
 <div class="main">
     {{ partial "breadcrumb.html" . }}
     <h1><span>{{ .Title }}</span></h1>
     <p>
-        事業を営むうえで知っておきたい税務・会計の知識を、テーマ別にまとめています。<br>
-        制度の改正にあわせて、内容を見直しています。各記事の更新日と出典をご確認ください。
+        事業を営むうえで知っておきたい税務・会計の知識を、テーマ別にまとめています。制度の改正にあわせて内容を見直していますので、各記事の更新日と出典もあわせてご確認ください。
     </p>
-    {{ partial "hub_cards.html" (dict "hubs" .Sections.ByWeight "latest" true) }}
+    <ul class="hub_nav" aria-label="テーマ">
+        {{ range $hubs }}<li><a href="#{{ path.Base .RelPermalink }}">{{ .Title }}<small>{{ len .RegularPages }}本</small></a></li>{{ end }}
+    </ul>
+
+    {{ range $hubs }}
+    <section class="guide_hub" id="{{ path.Base .RelPermalink }}">
+        <h2><span>{{ .Title }}</span></h2>
+        {{ with .Params.summary }}<p class="section_lead">{{ . }}</p>{{ end }}
+        {{ partial "article_rows.html" .RegularPages.ByWeight }}
+        <p class="guide_hub_more"><a class="text_link" href="{{ .RelPermalink }}">{{ .Title }}の解説と記事一覧へ &rarr;</a></p>
+    </section>
+    {{ end }}
+
+    {{ partial "cta.html" (dict "title" "記事を読んでも判断に迷ったら" "text" "制度の適用や届出の要否は、事業の状況によって変わります。個別のご相談をお受けしています。" "topic" "other" "location" "guide_index") }}
+    {{ partial "content_note.html" . }}
 </div>
 {{ end }}

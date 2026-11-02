@@ -54,6 +54,11 @@ $(function () {
     if (!formStarted) { formStarted = true; track("form_start", { form_id: "contact" }); }
   });
 
+  // エラー・完了のメッセージはフォームの先頭に出るので、そこまで戻す
+  function scrollToForm() {
+    if ($form.length) { $('html, body').animate({ scrollTop: Math.max($form.offset().top - 20, 0) }, 300); }
+  }
+
   const $submitButton = $(".submit");
   $submitButton.click(function (e) {
     e.preventDefault();
@@ -85,10 +90,14 @@ $(function () {
         errorMessage += "お問い合わせ内容を入力してください。<br>";
         errorTypes.push("message");
     }
+    if (!$("#privacy_agree").prop("checked")) {
+        errorMessage += "個人情報の取扱いへの同意にチェックを入れてください。<br>";
+        errorTypes.push("privacy");
+    }
     if (errorMessage) {
         $(".error").html(errorMessage).show();
         $(".success").hide();
-        $('html, body').animate({ scrollTop: 0 }, 300);
+        scrollToForm();
         track("form_validation_error", { form_id: "contact", error_type: errorTypes.join(",") });
     } else {
         // 選択項目は、メールのテンプレートを変えなくても届くように、本文の先頭にまとめて送る
@@ -132,12 +141,13 @@ $(function () {
             $("#segment").val("");
             $("#source").val("");
             $("#message").val("");
-            $('html, body').animate({ scrollTop: 0 }, 300);
+            $("#privacy_agree").prop("checked", false);
+            scrollToForm();
         }, function(error) {
             track("form_send_failed", { form_id: "contact", error_code: String(error && error.status || "unknown") });
             $(".error").html("送信に失敗しました。").show();
             $(".success").hide();
-            $('html, body').animate({ scrollTop: 0 }, 300);
+            scrollToForm();
         });
     }
   });

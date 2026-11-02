@@ -1,17 +1,14 @@
-{{- /* ハブ（テーマ）のカード。引数: hubs（セクションのリスト）, latest（最新記事を出すか） */ -}}
-<ul class="hub_cards">
+{{- /* 税務ガイドのテーマ（ハブ）のカード（トップで使う）。記事は行ごとのリンクにして、記事であることが分かるようにする。引数: hubs */ -}}
+<ul class="cards cards_3">
     {{ range .hubs }}
-    <li class="hub_card">
-        <a class="hub_card_title" href="{{ .RelPermalink }}">{{ .Title }}</a>
-        <div class="hub_card_summary">{{ .Params.summary }}</div>
-        {{ if $.latest }}
-        <ul class="hub_card_latest">
-            {{ range first 3 .RegularPages.ByLastmod.Reverse }}
-            <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
-            {{ end }}
+    {{ $pages := .RegularPages.ByWeight }}
+    <li class="card">
+        <a class="card_title" href="{{ .RelPermalink }}">{{ .Title }}</a>
+        <div class="card_text">{{ .Params.summary }}</div>
+        <ul class="hub_card_articles">
+            {{ range $pages }}<li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>{{ end }}
         </ul>
-        {{ end }}
-        <a class="text_link hub_card_more" href="{{ .RelPermalink }}">{{ .Title }}の記事一覧 &rarr;</a>
+        <a class="text_link" href="{{ .RelPermalink }}">記事一覧（{{ len $pages }}本）&rarr;</a>
     </li>
     {{ end }}
 </ul>

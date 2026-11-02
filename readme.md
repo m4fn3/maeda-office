@@ -24,9 +24,9 @@
 │   │   ├── baseof.html # htmlの基礎の共通部分
 │   │   └── single.html # 汎用ページ（個人情報の取扱いなど）
 │   ├── guide
-│   │   ├── list.html # /guide/ ページ（ハブのカード）
+│   │   ├── list.html # /guide/ ページ（テーマごとの記事一覧）
 │   │   ├── hub.html # ハブのページ（導入文・記事一覧・相談枠）
-│   │   └── single.html # 記事
+│   │   └── single.html # 記事のテンプレート（執筆者・ポイント・目次・出典・相談枠・同じテーマの記事を自動で付ける）
 │   ├── service
 │   │   ├── list.html # /service/ ページ
 │   │   └── single.html # 業務内容の個別ページ
@@ -34,9 +34,14 @@
 │   │   └── single.html
 │   ├── index.html # rootページの本体
 │   ├── partials # 共通のパーツ
-│   │   ├── breadcrumb.html / cta.html / hub_cards.html / service_cards.html
-│   │   ├── article_dates.html / head.html / jsonld.html
+│   │   ├── breadcrumb.html / cta.html（ページ末尾の相談枠）/ flow.html（ご相談の流れ）
+│   │   ├── hub_cards.html（トップの税務ガイド）/ article_rows.html（記事の一覧）/ service_cards.html
+│   │   ├── article_dates.html / content_note.html（掲載内容の注意書き）/ head.html / jsonld.html
 │   │   └── footer.html / header.html
+│   ├── shortcodes # 記事で使う部品
+│   │   ├── imgx.html # 画像
+│   │   ├── note.html # 補足・注意の枠
+│   │   └── steps.html # 手順（番号付きの流れ）
 │   └── profile
 │       └── single.html
 ├── public # ビルドされたサイト
@@ -69,7 +74,10 @@
 | ビルド結果のチェック | `python3 scripts/check_seo.py public tax-maeda.com`（CI でも実行） |
 | OGP 画像・favicon | `static/images/og.png`、`static/favicon.ico`、`static/images/icon-*.png` |
 
-### 記事を書くとき（front matter）
+### 記事を書くとき
+記事の形（front matter・本文の書き方・使える部品）は **`documents/article-template.md`** にまとめている。新しい記事はこの形で書く。
+
+#### front matter
 ```yaml
 ---
 title: "記事タイトル"
@@ -77,7 +85,10 @@ date: 2025-10-25          # 公開日
 lastmod: 2025-12-29       # 内容を直したら必ずこの日付を更新する（画面の「更新」日・sitemap・JSON-LD に出る）
 description: "検索結果・AI 回答に出る要約（60〜120字）"
 weight: 1                 # ハブ内の並び順
-genre: annual             # annual（年度更新）/ evergreen（常設）/ procedure（手続）/ decision（判断・比較）。GA4 の content_type に出る
+genre: annual             # annual（年度版）/ evergreen（基礎知識）/ procedure（手続）/ decision（比較・判断）。GA4 の content_type に出る（画面には出さない）
+points:                   # 「この記事のポイント」（3項目前後）
+  - "ポイント"
+target: "こんな方に（1文）"
 aliases:                  # 旧 URL からの転送（URL を変えたときだけ）
   - /article/old-slug/
 sources:                  # 出典（国税庁など）。記事末尾の「参考（出典）」と JSON-LD の citation に出る
@@ -85,6 +96,7 @@ sources:                  # 出典（国税庁など）。記事末尾の「参�
     url: "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2072.htm"
 ---
 ```
+- 本文は `##`（章）と `###`（小見出し）で組み、`<br>` や色付きの文字は使わない。補足・注意は `{{< note >}}`、手順は `{{< steps >}}`。
 - 画像（`imgx` ショートコード）には必ず `alt="…"` を付ける。表や図の中身は、画像ではなく HTML の表か本文にする。
 - 表の見出し行は `<thead>` に入れる（`<td>` のままでよい。ビルド時に `<th>` へ変換される）。
 - FAQ は front matter の `faq:`（`q` / `a`）に書くと、ページに表示され `FAQPage` の JSON-LD にもなる（業務内容ページで使用）。

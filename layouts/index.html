@@ -2,58 +2,61 @@
 {{- $o := .Site.Params.office -}}
 {{- $p := .Site.Params.person -}}
 {{- $guide := site.GetPage "/guide" -}}
+{{- $profile := site.GetPage "/profile" -}}
 <div class="main">
     <img src="{{ "images/home_top.jpeg" | relURL }}" class="top_eyecatch" alt="前田武志税理士事務所のトップ画像（青い海と空）">
     <h1><span>神戸市東灘区の税理士事務所</span></h1>
-    <p>
-        前田武志税理士事務所は、神戸市東灘区の税理士事務所です。<br>
-        監査法人での監査・調査の経験と、上場準備会社で上場準備・管理体制の確立・買収調査に携わった経験を生かし、開業間もない事業者の方から、成長企業・上場を目指す企業まで、会計・税務の面から支援します。
+    <p class="hero_lead">
+        前田武志税理士事務所は、神戸市東灘区の税理士事務所です。監査法人での監査・調査の経験と、上場準備会社で上場準備・管理体制の確立・買収調査に携わった経験を生かし、開業間もない事業者の方から、成長企業・上場を目指す企業まで、会計・税務の面から支援します。
     </p>
 
-    <h2><span>ご相談の例</span></h2>
+    <h2><span>業務内容</span></h2>
+    <p class="section_lead">
+        開業間もない方から、成長企業・上場を目指す企業まで、次のようなご相談をお受けしています。<a class="text_link" href="{{ "service/" | relURL }}">費用・ご相談の流れ・よくある質問 &rarr;</a>
+    </p>
     {{ partial "service_cards.html" . }}
 
     <h2><span>代表のご紹介</span></h2>
-    <p>
-        代表の{{ $p.name }}は、{{ $p.jobTitle }}として登録しています（登録番号 第{{ $p.registrationNumber }}号、{{ $p.association }}所属）。
-        （有限責任）監査法人トーマツで監査・調査・経理指導を経験した後、上場準備会社などで経理部長・管理本部長・ＣＦＯ等を務め、{{ $o.foundingYear }}年に事務所を開業しました。<br>
-        <a class="text_link home_profile_link" href="{{ "profile" | relURL }}">プロフィールを見る &rarr;</a>
-    </p>
+    <div class="intro_person">
+        <img class="intro_person_photo" src="{{ "images/profile.jpeg" | relURL }}" alt="{{ $p.name }}（{{ $p.jobTitle }}）" loading="lazy">
+        <p>
+            代表の{{ $p.name }}は、{{ $p.jobTitle }}として登録しています（登録番号 第{{ $p.registrationNumber }}号、{{ $p.association }}所属）。（有限責任）監査法人トーマツで監査・調査・経理指導を経験した後、上場準備会社などで経理部長・管理本部長・ＣＦＯ等を務め、{{ $o.foundingYear }}年に事務所を開業しました。<br>
+            <a class="text_link" href="{{ $profile.RelPermalink }}">プロフィールを見る &rarr;</a>
+        </p>
+    </div>
 
     <h2><span>税務ガイド</span></h2>
-    <p>
-        年末調整、開業・法人設立、消費税・所得税など、事業に必要な税務・会計の知識を解説しています。
-    </p>
-    {{ partial "hub_cards.html" (dict "hubs" $guide.Sections.ByWeight "latest" false) }}
+    <p class="section_lead">年末調整、開業・法人設立、消費税・所得税など、事業に必要な税務・会計の知識をテーマ別に解説しています。</p>
+    {{ partial "hub_cards.html" (dict "hubs" $guide.Sections.ByWeight) }}
 
     <h2><span>事務所概要</span></h2>
-    <table class="office_info">
+    <table class="info_table">
         <tr>
-            <td>事務所名</td>
+            <th scope="row">事務所名</th>
             <td>{{ $o.name }}</td>
         </tr>
         <tr>
-            <td>代表</td>
-            <td>{{ $p.name }}（{{ $p.jobTitle }}）<a class="text_link" href="{{ "profile" | relURL }}">プロフィールを見る &rarr;</a></td>
+            <th scope="row">代表</th>
+            <td><a href="{{ $profile.RelPermalink }}">{{ $p.name }}</a>（{{ $p.jobTitle }}）</td>
         </tr>
         <tr>
-            <td>税理士登録</td>
+            <th scope="row">税理士登録</th>
             <td>登録番号 第{{ $p.registrationNumber }}号 <span class="nowrap">（{{ $p.association }}所属）</span></td>
         </tr>
         <tr>
-            <td>所在地</td>
+            <th scope="row">所在地</th>
             <td><span class="nowrap">〒{{ $o.postalCode }}</span> {{ $o.region }}{{ $o.locality }}{{ $o.streetDisplay | replaceRE "([０-９0-9]+丁目.*)$" "<span class=\"nowrap\">$1</span>" | safeHTML }} <span class="nowrap">{{ $o.building }}</span></td>
         </tr>
         <tr>
-            <td>営業時間</td>
+            <th scope="row">営業時間</th>
             <td>毎日 {{ $o.hours }}（{{ $o.hoursNote }}）</td>
         </tr>
         <tr>
-            <td>対応地域</td>
+            <th scope="row">対応地域</th>
             <td>{{ $o.areaNote }}</td>
         </tr>
         <tr>
-            <td>業務内容</td>
+            <th scope="row">業務内容</th>
             <td>
                 <ul>
                     {{ range .Site.Params.services }}<li><a href="{{ .path | relURL }}">{{ .name }}</a></li>{{ end }}
@@ -62,6 +65,6 @@
         </tr>
     </table>
 
-    {{ partial "cta.html" (dict "title" "まずはお気軽にご相談ください" "text" "ご相談内容をお知らせください。内容を確認のうえ、ご連絡します。" "topic" "other" "location" "home") }}
+    {{ partial "cta.html" (dict "title" "ご相談・お問い合わせ" "text" "ご相談は、お問い合わせフォームからお受けしています。まだ具体的に決まっていない段階のご相談もお気軽にどうぞ。" "service" "/service/" "service_label" "業務内容を詳しく見る" "topic" "" "location" "home") }}
 </div>
 {{ end }}

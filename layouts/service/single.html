@@ -4,13 +4,19 @@
     <h1><span>{{ .Title }}</span></h1>
     <div class="page_content">{{ .Content }}</div>
     {{ with .Params.related }}
-    <div class="same_hub related_guides">
-        <div class="same_hub_label">関連する税務ガイド</div>
-        <ul>
-            {{ range . }}{{ with site.GetPage . }}<li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>{{ end }}{{ end }}
-        </ul>
-    </div>
+    <h2><span>関連する税務ガイド</span></h2>
+    <ul class="cards">
+        {{ range . }}{{ with site.GetPage . }}
+        <li>
+            <a class="card" href="{{ .RelPermalink }}">
+                <span class="card_title">{{ .Title }}</span>
+                {{ with .Params.description }}<span class="card_text">{{ . }}</span>{{ end }}
+                <span class="card_more">{{ if .IsSection }}記事一覧を見る{{ else }}記事を読む{{ end }}</span>
+            </a>
+        </li>
+        {{ end }}{{ end }}
+    </ul>
     {{ end }}
-    {{ partial "cta.html" (dict "title" "このご相談について、お問い合わせください" "text" "ご相談内容をお知らせください。内容を確認のうえ、ご連絡します。" "topic" .Params.topic "location" "service_page") }}
+    {{ partial "cta.html" (dict "title" "ご相談・お問い合わせ" "text" (printf "%sについて、現在の状況やお困りごとをお知らせください。内容を確認のうえ、ご連絡します。" .Title) "topic" .Params.topic "location" "service_page") }}
 </div>
 {{ end }}

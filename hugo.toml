@@ -12,6 +12,13 @@ disableKinds = ['taxonomy', 'term']
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true # MarkdownでHTMLを許可
+    [markup.goldmark.extensions.cjk] # 日本語の文中の改行を空白にしない
+      enable = true
+      eastAsianLineBreaks = true
+  [markup.tableOfContents] # 記事の目次は章（##）だけ、番号付き
+    startLevel = 2
+    endLevel = 2
+    ordered = true
 
 # /llms.txt を出力する（layouts/index.llms.txt）
 [outputFormats]

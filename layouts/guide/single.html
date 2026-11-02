@@ -1,64 +1,78 @@
 {{ define "main" }}
+{{- /* 記事のテンプレート。本文以外の部品（ポイント・目次・出典・執筆者・相談枠・同じテーマの記事）はここで付ける。書き方は documents/article-template.md */ -}}
 {{- $p := .Site.Params.person -}}
-{{- $o := .Site.Params.office -}}
 {{- $profile := site.GetPage "/profile" -}}
 {{- $hub := .Parent -}}
+
+{{- /* 表の見出し行（thead 内の td）を th に直す */ -}}
+{{- $content := .Content -}}
+{{- range findRE `(?s)<thead>.*?</thead>` $content -}}
+    {{- $fixed := . | replaceRE `<td` `<th scope="col"` | replaceRE `</td>` `</th>` -}}
+    {{- $content = replace $content . $fixed -}}
+{{- end -}}
+{{- $h2count := len (findRE `<h2` $content) -}}
+
 <div class="main">
     {{ partial "breadcrumb.html" . }}
-    <div class="article_list_tag_box">
-        <a class="article_list_tag" href="{{ $hub.RelPermalink }}">{{ $hub.Title }}</a>
-        {{ partial "article_dates.html" . }}
-    </div>
     <h1><span>{{ .Title }}</span></h1>
-    <div class="article_content">
-        {{- /* 表の見出し行（thead 内の td）を th に直す。見た目は CSS で従来どおりに保つ */ -}}
-        {{- $content := .Content -}}
-        {{- range findRE `(?s)<thead>.*?</thead>` $content -}}
-            {{- $fixed := . | replaceRE `<td` `<th scope="col"` | replaceRE `</td>` `</th>` -}}
-            {{- $content = replace $content . $fixed -}}
-        {{- end -}}
-        {{ $content | safeHTML }}
+    {{- /* 記事の情報はタイトルの下に1行で：テーマ｜公開日・更新日｜執筆者（タグはテーマの1種類だけ） */}}
+    <div class="article_meta">
+        <a class="article_hub_tag" href="{{ $hub.RelPermalink }}">{{ $hub.Title }}</a>
+        {{ partial "article_dates.html" . }}
+        <span class="meta_author"><span class="date_label">執筆</span> <a href="{{ $profile.RelPermalink }}">{{ $p.name }}</a>（{{ $p.jobTitle }}）</span>
+    </div>
 
-        {{ with .Params.sources }}
-        <h2>参考（出典）</h2>
-        <ul class="article_sources">
-            {{ range . }}
-            <li><a href="{{ .url }}" target="_blank" rel="noopener">{{ .title }}</a></li>
-            {{ end }}
+    {{ if or .Params.points .Params.target }}
+    <div class="article_points">
+        {{ with .Params.points }}
+        <div class="article_points_label">この記事のポイント</div>
+        <ul>
+            {{ range . }}<li>{{ . | markdownify }}</li>{{ end }}
         </ul>
         {{ end }}
-
-        {{ partial "cta.html" (dict "title" $hub.Params.cta_title "text" $hub.Params.cta_text "service" $hub.Params.service "topic" $hub.Params.topic "location" "article_end") }}
-
-        {{ $others := where $hub.RegularPages "Permalink" "ne" .Permalink }}
-        {{ with $others }}
-        <div class="same_hub">
-            <div class="same_hub_label">同じテーマの記事（{{ $hub.Title }}）</div>
-            <ul>
-                {{ range .ByWeight }}<li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>{{ end }}
-            </ul>
-        </div>
-        {{ end }}
-
-        <aside class="author_box" aria-label="執筆者">
-            <div class="author_box_label">この記事の執筆者</div>
-            <div class="author_box_main">
-                <span class="author_box_avatar"><img class="author_box_photo" src="{{ "images/profile.jpeg" | relURL }}" alt="{{ $p.name }}" width="72" height="72" loading="lazy"></span>
-                <div class="author_box_body">
-                    <div class="author_box_name">
-                        <a href="{{ $profile.RelPermalink }}">{{ $p.name }}</a>
-                        <span class="author_box_job">{{ $p.jobTitle }}</span>
-                    </div>
-                    <div class="author_box_meta">{{ $p.association }}所属 ／ 登録番号 第{{ $p.registrationNumber }}号</div>
-                    <p class="author_box_text">{{ $o.region }}{{ $o.locality }}で{{ $o.name }}を運営しています。</p>
-                    <a class="author_box_link" href="{{ $profile.RelPermalink }}">プロフィールを見る &rarr;</a>
-                </div>
-            </div>
-            <p class="author_box_note">
-                ※ 本記事は一般的な情報の提供を目的としています。税制は改正されることがあり、個別の事情によって取扱いが異なる場合があります。具体的な判断は、所轄の税務署または専門家にご確認ください。
-            </p>
-        </aside>
+        {{ with .Params.target }}<p class="article_target"><span>こんな方に</span>{{ . }}</p>{{ end }}
     </div>
-    <a class="article_back" href="{{ $hub.RelPermalink }}">{{ $hub.Title }}の記事一覧へ戻る</a>
+    {{ end }}
+
+    {{ if ge $h2count 3 }}
+    <nav class="toc" aria-label="目次">
+        <div class="toc_label">目次</div>
+        {{ .TableOfContents }}
+    </nav>
+    {{ end }}
+
+    <div class="article_content">
+        {{ $content | safeHTML }}
+    </div>
+
+    {{- /* 本文の付記（出典・注意書き）は小さな文字でまとめて本文の直後に置く */}}
+    <div class="article_notes">
+        {{ with .Params.sources }}
+        <div class="article_notes_label">参考（出典）</div>
+        <ul class="article_sources">
+            {{ range . }}<li><a href="{{ .url }}" target="_blank" rel="noopener">{{ .title }}</a></li>{{ end }}
+        </ul>
+        {{ end }}
+        {{ partial "content_note.html" . }}
+    </div>
+
+    {{ partial "cta.html" (dict "title" $hub.Params.cta_title "text" $hub.Params.cta_text "service" $hub.Params.service "topic" $hub.Params.topic "location" "article_end") }}
+
+    {{ $others := where $hub.RegularPages "Permalink" "ne" .Permalink }}
+    {{ with $others }}
+    <h2><span>同じテーマの記事</span></h2>
+    <ul class="cards related_cards">
+        {{ range .ByWeight }}
+        <li>
+            <a class="card" href="{{ .RelPermalink }}">
+                <span class="card_title">{{ .Title }}</span>
+                {{ with .Params.description }}<span class="card_text">{{ . }}</span>{{ end }}
+                {{ partial "article_dates.html" . }}
+            </a>
+        </li>
+        {{ end }}
+    </ul>
+    {{ end }}
+    <p class="page_back"><a href="{{ $hub.RelPermalink }}">{{ $hub.Title }}の記事一覧へ戻る</a></p>
 </div>
 {{ end }}

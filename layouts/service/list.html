@@ -2,21 +2,30 @@
 <div class="main">
     <h1><span>{{ .Title }}</span></h1>
     <p>
-        以下のようなご相談をお受けしています。単に作業を機械的に行うだけでなく、個々の状況に応じた最適な方法を導き、事業発展に少しでも貢献させていただきたいと思います。
+        個人事業主の方から中小企業、上場を目指す企業まで、次のようなご相談をお受けしています。作業を機械的にこなすのではなく、それぞれの状況に応じた最適な方法を一緒に考え、事業の発展に貢献したいと考えています。
     </p>
     {{ partial "service_cards.html" . }}
-    <p class="service_cost_note">
-        費用は、ご相談内容を伺ったうえで個別にお見積りします（応相談）。
+
+    <h2><span>費用について</span></h2>
+    <p>
+        費用は、ご相談内容を伺ったうえで、事業の規模や業務の範囲に応じて個別にお見積りします（応相談）。お見積りの内容にご納得いただいてから、ご契約となります。
     </p>
+
+    <h2><span>ご相談の流れ</span></h2>
+    {{ partial "flow.html" . }}
+
     {{ with .Params.faq }}
     <h2><span>よくある質問</span></h2>
-    <dl class="faq">
+    <div class="faq">
         {{ range . }}
-        <dt>{{ .q }}</dt>
-        <dd>{{ .a | markdownify }}</dd>
+        <details class="faq_item">
+            <summary>{{ .q }}</summary>
+            <div class="faq_answer">{{ .a | markdownify }}</div>
+        </details>
         {{ end }}
-    </dl>
+    </div>
     {{ end }}
-    {{ partial "cta.html" (dict "title" "まずはお気軽にご相談ください" "text" "ご相談内容をお知らせください。内容を確認のうえ、ご連絡します。" "topic" "other" "location" "service_index") }}
+
+    {{ partial "cta.html" (dict "title" "ご相談内容が決まっていなくても大丈夫です" "text" "「何から始めればよいか分からない」という段階でも、状況をお聞かせください。内容を確認のうえ、ご連絡します。" "topic" "other" "location" "service_index") }}
 </div>
 {{ end }}

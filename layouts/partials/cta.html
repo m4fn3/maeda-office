@@ -1,9 +1,18 @@
-{{- /* 相談への導線。引数: title, text, service（サービスページのパス・省略可）, topic（フォームの「ご相談内容」の値）, location（計測用） */ -}}
+{{- /*
+    相談への導線（ページ末尾）。章の見出しと並べず、ページの締めくくりの枠として置く。
+    枠は白ではなく淡い青緑（白い枠はクリックできるカードだけ、という決まりに合わせる）。
+    引数: title, text, service（サービスページのパス・省略可）, service_label（そのリンクの文言・省略可）,
+          topic（フォームの「ご相談内容」の値・空ならなし）, location（計測用）
+*/ -}}
+{{- $contact := "/contact/" -}}
+{{- with .topic }}{{ $contact = printf "/contact/?topic=%s" . }}{{ end -}}
 <aside class="cta_box" aria-label="ご相談">
-    <div class="cta_title">{{ .title }}</div>
-    {{ with .text }}<div class="cta_text">{{ . }}</div>{{ end }}
+    <div class="cta_body">
+        <div class="cta_title">{{ .title }}</div>
+        {{ with .text }}<p class="cta_text">{{ . }}</p>{{ end }}
+    </div>
     <div class="cta_buttons">
-        <a class="cta_button" href="{{ printf "/contact/?topic=%s" .topic | relURL }}" data-cta="{{ .location }}">お問い合わせフォームへ</a>
-        {{ with .service }}<a class="cta_sub" href="{{ . | relURL }}" data-cta="{{ $.location }}_service">サービスの詳細を見る &rarr;</a>{{ end }}
+        <a class="btn" href="{{ $contact | relURL }}" data-cta="{{ .location }}">お問い合わせフォームへ</a>
+        {{ with .service }}<a class="text_link" href="{{ . | relURL }}" data-cta="{{ $.location }}_service">{{ or $.service_label "サービスの内容を見る" }} &rarr;</a>{{ end }}
     </div>
 </aside>
