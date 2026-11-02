@@ -26,8 +26,6 @@
     </p>
     {{ partial "hub_cards.html" (dict "hubs" $guide.Sections.ByWeight "latest" false) }}
 
-    {{ partial "cta.html" (dict "title" "まずはお気軽にご相談ください" "text" "ご相談内容をお知らせください。内容を確認のうえ、ご連絡します。" "topic" "other" "location" "home") }}
-
     <h2><span>事務所概要</span></h2>
     <table class="office_info">
         <tr>
@@ -63,5 +61,7 @@
             </td>
         </tr>
     </table>
+
+    {{ partial "cta.html" (dict "title" "まずはお気軽にご相談ください" "text" "ご相談内容をお知らせください。内容を確認のうえ、ご連絡します。" "topic" "other" "location" "home") }}
 </div>
 {{ end }}
