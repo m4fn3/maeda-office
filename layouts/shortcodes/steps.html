@@ -1,0 +1,10 @@
+{{- /*
+    手順・流れ（番号付きの縦の流れ）。中身は Markdown の番号付きリストで書く。
+      {{< steps >}}
+      1. **お問い合わせ** … フォームからご連絡ください。
+      2. ...
+      {{< /steps >}}
+*/ -}}
+<div class="steps">
+    {{ .InnerDeindent | .Page.RenderString (dict "display" "block") }}
+</div>

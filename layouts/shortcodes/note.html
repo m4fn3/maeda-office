@@ -1,0 +1,11 @@
+{{- /*
+    補足・注意の枠（記事・業務内容ページで使う）。中身は Markdown で書ける。
+      {{< note >}}補足の文章{{< /note >}}
+      {{< note type="warn" title="注意" >}}注意の文章{{< /note >}}
+    type: info（補足・既定）/ warn（注意・改正など）
+*/ -}}
+{{- $type := .Get "type" | default "info" -}}
+<div class="note note_{{ $type }}">
+    {{- with .Get "title" }}<div class="note_title">{{ . }}</div>{{ end }}
+    {{ .InnerDeindent | .Page.RenderString (dict "display" "block") }}
+</div>
