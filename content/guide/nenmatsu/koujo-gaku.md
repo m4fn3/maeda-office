@@ -14,8 +14,10 @@ sources:
     url: "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1195.htm"
   - title: "国税庁 タックスアンサー No.1180 扶養控除"
     url: "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1180.htm"
-tags: ["税金", "給与・社保"]
-weight: 5
+weight: 3
+genre: annual
+aliases:
+  - /article/income-deductions/
 ---
 <!-- 給与控除 -->
 

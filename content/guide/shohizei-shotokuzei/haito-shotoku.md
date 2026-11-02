@@ -10,8 +10,10 @@ sources:
     url: "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1331.htm"
   - title: "国税庁 タックスアンサー No.1250 配当所得があるとき(配当控除)"
     url: "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1250.htm"
-tags: ["税金"]
-weight: 4
+weight: 3
+genre: decision
+aliases:
+  - /article/dividend-income/
 ---
 <!-- 配当所得 -->
 

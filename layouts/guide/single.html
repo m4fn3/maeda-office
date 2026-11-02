@@ -2,16 +2,11 @@
 {{- $p := .Site.Params.person -}}
 {{- $o := .Site.Params.office -}}
 {{- $profile := site.GetPage "/profile" -}}
+{{- $hub := .Parent -}}
 <div class="main">
-    <nav class="breadcrumb" aria-label="パンくずリスト">
-        <a href="{{ "" | relURL }}">トップ</a> &gt;
-        <a href="{{ "article/" | relURL }}">お役立ち豆知識</a> &gt;
-        <span>{{ .Title }}</span>
-    </nav>
+    {{ partial "breadcrumb.html" . }}
     <div class="article_list_tag_box">
-        {{ range .GetTerms "tags" }}
-            <a class="article_list_tag" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
-        {{ end }}
+        <a class="article_list_tag" href="{{ $hub.RelPermalink }}">{{ $hub.Title }}</a>
         {{ partial "article_dates.html" . }}
     </div>
     <h1><span>{{ .Title }}</span></h1>
@@ -33,6 +28,18 @@
         </ul>
         {{ end }}
 
+        {{ partial "cta.html" (dict "title" $hub.Params.cta_title "text" $hub.Params.cta_text "service" $hub.Params.service "topic" $hub.Params.topic "location" "article_end") }}
+
+        {{ $others := where $hub.RegularPages "Permalink" "ne" .Permalink }}
+        {{ with $others }}
+        <div class="same_hub">
+            <div class="same_hub_label">同じテーマの記事（{{ $hub.Title }}）</div>
+            <ul>
+                {{ range .ByWeight }}<li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>{{ end }}
+            </ul>
+        </div>
+        {{ end }}
+
         <aside class="author_box" aria-label="執筆者">
             <div class="author_box_label">この記事の執筆者</div>
             <div class="author_box_main">
@@ -52,6 +59,6 @@
             </p>
         </aside>
     </div>
-    <a class="article_back" href="{{ "article" | relURL }}">記事一覧へ戻る</a>
+    <a class="article_back" href="{{ $hub.RelPermalink }}">{{ $hub.Title }}の記事一覧へ戻る</a>
 </div>
 {{ end }}

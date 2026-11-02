@@ -3,10 +3,10 @@
     <h1><span>お問い合わせ</span></h1>
     <p>
         お問い合わせは以下のフォームからお願いいたします。<br>
-        ご質問やご相談など、どんなことでもお気軽にお問い合わせください。<br>
-        なお、返信にはお時間をいただく場合がございますので、ご了承ください。
+        顧問契約、上場準備・M&amp;A、開業・法人設立、給与・年末調整など、ご相談の内容をお選びのうえ、状況をお知らせください。<br>
+        返信には、内容によってお時間をいただく場合がございます。
     </p>
-    <p style="color: red; font-weight: 600;">営業関連の書込みはご遠慮ください。返信もいたしません。</p>
+    <p class="contact_note">なお、営業関連のご連絡はご遠慮ください（返信もいたしません）。</p>
     <form class="contact_form">
         <div class="error">
         </div>
@@ -14,19 +14,46 @@
             お問い合わせありがとうございます。<br>
             追ってご連絡いたしますので、しばらくお待ちください。
         </div>
-        <label>お名前<span class="required">*必須</span></label><br>
+        <label for="name">お名前<span class="required">*必須</span></label><br>
         <input type="text" id="name" name="name">
-        <label>フリガナ</label><br>
+        <label for="furigana">フリガナ</label><br>
         <input type="text" id="furigana" name="furigana">
-        <label>メールアドレス<span class="required">*必須</span></label><br>
+        <label for="email">メールアドレス<span class="required">*必須</span></label><br>
         <input type="email" id="email" name="email">
-        <label>メールアドレス(確認用)<span class="required">*必須</span></label><br>
+        <label for="email2">メールアドレス(確認用)<span class="required">*必須</span></label><br>
         <input type="email" id="email2" name="email2">
-        <label>電話番号</label><br>
+        <label for="phone">電話番号</label><br>
         <input type="tel" id="phone" name="phone">
-        <label>お問い合わせ内容<span class="required">*必須</span></label><br>
+        <label for="topic">ご相談内容<span class="required">*必須</span></label><br>
+        <select id="topic" name="topic">
+            <option value="">選択してください</option>
+            {{ range .Site.Params.services }}<option value="{{ .topic }}">{{ .name }}</option>{{ end }}
+            <option value="other">その他・まだ決まっていない</option>
+        </select>
+        <label for="segment">ご相談者の区分（任意）</label><br>
+        <select id="segment" name="segment">
+            <option value="">選択してください</option>
+            <option>個人事業主（開業前を含む）</option>
+            <option>法人（従業員10名以下）</option>
+            <option>法人（従業員11〜50名）</option>
+            <option>法人（従業員51名以上）</option>
+            <option>上場準備中・上場会社</option>
+        </select>
+        <label for="source">このサイトを知ったきっかけ（任意）</label><br>
+        <select id="source" name="source">
+            <option value="">選択してください</option>
+            <option>Google・Yahoo!などの検索</option>
+            <option>ChatGPT・Geminiなどの生成AI</option>
+            <option>ご紹介</option>
+            <option>SNS</option>
+            <option>その他</option>
+        </select>
+        <label for="message">お問い合わせ内容<span class="required">*必須</span></label><br>
         <textarea id="message" rows="5" name="message"></textarea>
         <input type="submit" class="submit" value="送信する">
+        <div class="contact_privacy">
+            お送りいただいた内容は、ご相談への対応のためにのみ利用します。詳しくは<a href="{{ "privacy" | relURL }}">個人情報の取扱い</a>をご覧ください。
+        </div>
     </form>
 </div>
 {{ end }}

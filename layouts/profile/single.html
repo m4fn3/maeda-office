@@ -1,17 +1,37 @@
 {{ define "main" }}
+{{- $p := .Site.Params.person -}}
 <div class="main">
     <h1><span>プロフィール</span></h1>
     <img src="{{ "images/profile.jpeg" | relURL }}" class="profile_image" alt="前田武志（税理士）の写真">
     <p>
         前田武志税理士事務所の代表、前田武志です。<br>
-        （有限責任）監査法人トーマツにて監査業務のみならず、調査業務や経理指導等を幅広く経験した後、上場準備会社に転職し、監査法人の経験を生かして、上場準備業務や管理体制の確立、効率化の推進、買収調査・交渉等様々な業務に携わってきました。<br>
-        これまでの経験を幅広いクライアントの発展に生かすべく、税理士事務所を開業しました。<br>
+        （有限責任）監査法人トーマツで、監査業務に加え、調査業務や経理指導などを幅広く経験しました。その後は上場準備会社に転職し、上場準備業務、管理体制の確立、効率化の推進、買収調査・交渉などに携わってきました。<br>
+        こうした経験を、幅広い事業者の発展に生かしたいと考え、2024年に税理士事務所を開業しました。<br>
+    </p>
+    <h2><span>対応できる領域</span></h2>
+    <ul class="profile_areas">
+        <li>
+            <strong><a href="{{ "service/komon/" | relURL }}">会計・税務、経理指導</a></strong><br>
+            監査法人での監査・調査・経理指導の経験と、事業会社で経理部長・管理本部長・ＣＦＯとして実務を担った経験があります。
+        </li>
+        <li>
+            <strong><a href="{{ "service/ipo-ma/" | relURL }}">上場準備・管理体制</a></strong><br>
+            上場準備会社で、上場準備業務、管理体制の確立、効率化の推進に携わりました。
+        </li>
+        <li>
+            <strong><a href="{{ "service/ipo-ma/" | relURL }}">Ｍ＆Ａ</a></strong><br>
+            買収調査・交渉などに携わりました。
+        </li>
+    </ul>
+    <h2><span>ご相談にあたって</span></h2>
+    <p>
+        単に作業を機械的に行うだけでなく、個々の状況に応じた最適な方法をご相談者とともに考え、事業の発展に貢献したいと考えています。
     </p>
     <h2><span>資&emsp;格</span></h2>
     <table class="profile_history">
         <tr>
             <td>税理士</td>
-            <td>登録番号 第{{ .Site.Params.person.registrationNumber }}号（{{ .Site.Params.person.association }}所属）</td>
+            <td>登録番号 第{{ $p.registrationNumber }}号（{{ $p.association }}所属）</td>
         </tr>
         <tr>
             <td>1995年</td>
@@ -30,12 +50,13 @@
         </tr>
         <tr>
             <td>2003年</td>
-            <td>一般企業（バイオ、半導体、人材派遣、食肉加工卸、資産管理運用等々）に勤務し、経理部長、管理本部長、ＣＦＯ等の職位で活動</td>
+            <td>一般企業（バイオ、半導体、人材派遣、食肉加工卸、資産管理運用など）に勤務し、経理部長、管理本部長、ＣＦＯ等の職位で活動</td>
         </tr>
         <tr>
             <td>2024年</td>
             <td>前田武志税理士事務所 開業</td>
         </tr>
     </table>
+    {{ partial "cta.html" (dict "title" "ご相談をお考えの方へ" "text" "ご相談内容をお知らせください。内容を確認のうえ、ご連絡します。" "topic" "other" "location" "profile") }}
 </div>
 {{ end }}

@@ -1,0 +1,9 @@
+{{- /* 相談への導線。引数: title, text, service（サービスページのパス・省略可）, topic（フォームの「ご相談内容」の値）, location（計測用） */ -}}
+<aside class="cta_box" aria-label="ご相談">
+    <div class="cta_title">{{ .title }}</div>
+    {{ with .text }}<div class="cta_text">{{ . }}</div>{{ end }}
+    <div class="cta_buttons">
+        <a class="cta_button" href="{{ printf "/contact/?topic=%s" .topic | relURL }}" data-cta="{{ .location }}">お問い合わせフォームへ</a>
+        {{ with .service }}<a class="cta_sub" href="{{ . | relURL }}" data-cta="{{ $.location }}_service">サービスの詳細を見る &rarr;</a>{{ end }}
+    </div>
+</aside>

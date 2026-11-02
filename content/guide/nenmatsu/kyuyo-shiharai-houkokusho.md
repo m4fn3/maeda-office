@@ -6,8 +6,10 @@ lastmod: 2025-12-25
 sources:
   - title: "eLTAX（地方税ポータルシステム）"
     url: "https://www.eltax.lta.go.jp/"
-tags: ["給与・社保"]
-# weight: 
+weight: 4
+genre: annual
+aliases:
+  - /article/summary-table/
 ---
 <!-- 総括表 -->
 

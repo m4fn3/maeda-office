@@ -12,8 +12,10 @@ sources:
     url: "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6609.htm"
   - title: "国税庁 インボイス制度について"
     url: "https://www.nta.go.jp/taxes/shiraberu/zeimokubetsu/shohi/keigenzeiritsu/invoice_about.htm"
-tags: ["税金"]
-# weight: 
+weight: 1
+genre: evergreen
+aliases:
+  - /article/consumption-tax/
 ---
 <!-- 消費税 -->
 ## 免税事業者と課税事業者

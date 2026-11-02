@@ -1,0 +1,6 @@
+{{- /* パンくず。階層（Ancestors）から自動で組み立てる */ -}}
+<nav class="breadcrumb" aria-label="パンくずリスト">
+    <a href="{{ "" | relURL }}">トップ</a>
+    {{- range .Ancestors.Reverse }}{{ if not .IsHome }} &gt; <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>{{ end }}{{ end }}
+    &gt; <span>{{ .Title }}</span>
+</nav>

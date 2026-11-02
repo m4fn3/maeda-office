@@ -1,0 +1,17 @@
+{{- /* ハブ（テーマ）のカード。引数: hubs（セクションのリスト）, latest（最新記事を出すか） */ -}}
+<ul class="hub_cards">
+    {{ range .hubs }}
+    <li class="hub_card">
+        <a class="hub_card_title" href="{{ .RelPermalink }}">{{ .Title }}</a>
+        <div class="hub_card_summary">{{ .Params.summary }}</div>
+        {{ if $.latest }}
+        <ul class="hub_card_latest">
+            {{ range first 3 .RegularPages.ByLastmod.Reverse }}
+            <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+            {{ end }}
+        </ul>
+        {{ end }}
+        <a class="text_link hub_card_more" href="{{ .RelPermalink }}">{{ .Title }}の記事一覧 &rarr;</a>
+    </li>
+    {{ end }}
+</ul>

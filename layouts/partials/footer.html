@@ -7,6 +7,7 @@
         <span>営業時間：毎日 {{ $o.hours }}（{{ $o.hoursNote }}）</span><br>
         <span>税理士登録番号 第{{ $p.registrationNumber }}号（{{ $p.association }}所属）</span>
     </address>
-    <!-- 連絡先 : 080-4131-7420（078-453-7456）<br> -->
-    <div class="copyright">(c) 2025 {{ $o.nameEn }} All Rights Reserved.</div>
+    <div class="footer_links"><a href="{{ "privacy" | relURL }}">個人情報の取扱い</a></div>
+    <div class="footer_note">掲載内容は一般的な情報の提供を目的としています。個別の事情に応じた判断は、専門家にご相談ください。</div>
+    <div class="copyright">(c) {{ $o.foundingYear }}-{{ now.Year }} {{ $o.nameEn }} All Rights Reserved.</div>
 </div>

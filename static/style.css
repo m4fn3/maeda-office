@@ -761,3 +761,193 @@ h2 {
         line-height: 1.5;
     }
 }
+
+/* ===== 構造の作り直し（ハブ・業務内容カード・相談枠・フォーム） ===== */
+
+/* 本文（ハブの導入文・個別ページ）の箇条書き */
+.hub_lead,
+.page_content {
+    max-width: 750px;
+}
+.hub_lead ul, .hub_lead ol,
+.page_content ul, .page_content ol {
+    margin: 8px 20px;
+    padding-left: 24px;
+}
+.hub_lead li, .page_content li {
+    margin: 4px 0;
+}
+.page_content h2 {
+    margin-top: 28px;
+    margin-bottom: 8px;
+}
+.page_content a, .hub_lead a, .service_cost_note a {
+    color: #007B8F;
+    text-decoration: underline;
+}
+
+/* カード（税務ガイドのハブ／トップの業務内容） */
+.hub_cards, .service_cards {
+    list-style: none;
+    margin: 14px 20px;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    max-width: 800px;
+}
+.hub_card, .service_card {
+    background: #fff;
+    border: 1px solid #b3e3ea;
+    border-radius: 6px;
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.hub_card_title, .service_card_title {
+    font-size: 17px;
+    font-weight: 600;
+    color: #007B8F;
+}
+.hub_card_summary, .service_card_summary {
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: #2E4053;
+}
+.hub_card_latest {
+    list-style: none;
+    margin: 2px 0 0 0;
+    padding: 8px 0 0 0;
+    border-top: 1px dashed #d8d8d8;
+    font-size: 13.5px;
+    line-height: 1.6;
+}
+.hub_card_latest li { margin: 3px 0; }
+.hub_card_latest a { color: #1B2A3A; }
+.hub_card_latest a:hover { text-decoration: underline; }
+.main .hub_card .text_link,
+.main .service_card .text_link {
+    margin: auto 0 0 0;
+    align-self: flex-start;
+    display: inline-block;
+}
+.main .hub_card_more { margin-top: 6px; }
+@media (max-width: 700px) {
+    .hub_cards, .service_cards { grid-template-columns: 1fr; }
+}
+
+/* 記事一覧の説明文 */
+.article_list_desc {
+    margin: 4px 20px 0 20px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: #4a5a6a;
+}
+
+/* 相談への導線 */
+.cta_box {
+    margin: 32px 20px;
+    padding: 18px 22px;
+    background: #fff;
+    border: 1px solid #b3e3ea;
+    border-left: 5px solid #007B8F;
+    border-radius: 6px;
+    max-width: 730px;
+}
+.cta_title {
+    font-size: 17px;
+    font-weight: 600;
+    color: #007B8F;
+}
+.cta_text {
+    margin: 6px 0 0 0;
+    font-size: 14.5px;
+    line-height: 1.7;
+}
+.cta_buttons {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 18px;
+    margin: 14px 0 0 0;
+}
+.cta_button {
+    display: inline-block;
+    background: #007B8F;
+    color: #fff;
+    font-size: 15px;
+    padding: 9px 22px;
+    border-radius: 6px;
+}
+.cta_button:hover { background: #006272; }
+.cta_sub {
+    font-size: 13.5px;
+    color: #007B8F;
+    border-bottom: 1px solid #007B8F;
+}
+.cta_sub:hover { opacity: 0.7; }
+
+/* 同じテーマの記事／関連する税務ガイド */
+.same_hub {
+    margin: 32px 20px 0 20px;
+    padding-top: 14px;
+    border-top: 1px solid #d8d8d8;
+    max-width: 730px;
+}
+.same_hub_label {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: #007B8F;
+}
+.same_hub ul {
+    margin: 8px 0 0 0;
+    padding-left: 20px;
+    font-size: 14.5px;
+    line-height: 1.8;
+}
+.same_hub a { text-decoration: underline; color: #1B2A3A; }
+.page_content + .same_hub { margin-top: 24px; }
+
+/* トップ・業務内容・プロフィール */
+.main .home_profile_link { margin-left: 0; }
+.service_cost_note { color: #2E4053; }
+.profile_areas {
+    margin: 10px 20px;
+    padding-left: 22px;
+    max-width: 730px;
+    line-height: 1.7;
+}
+.profile_areas li { margin: 10px 0; }
+.profile_areas a { color: #007B8F; text-decoration: underline; }
+
+/* お問い合わせ */
+.contact_note {
+    color: #4a5a6a;
+    font-size: 14.5px;
+}
+.contact_form select {
+    box-sizing: content-box; /* 入力欄と同じ幅にそろえる */
+    border: 1px solid #007B8F;
+    border-radius: 6px;
+    font-size: 16px;
+    width: 90%;
+    padding: 7px;
+    display: block;
+    background: #fff;
+    color: #1B2A3A;
+}
+.contact_form select:focus { outline: 1px solid #007B8F; }
+.contact_privacy {
+    width: 90%;
+    font-size: 13px;
+    line-height: 1.7;
+    color: #4a5a6a;
+}
+.contact_privacy a { text-decoration: underline; color: #007B8F; }
+
+/* フッター */
+.footer .footer_links { margin: 10px 0 0 0; font-size: 13px; }
+.footer .footer_links a { text-decoration: underline; }
+.footer .footer_note { margin: 6px 20px 0 20px; font-size: 12px; opacity: 0.85; }

@@ -8,8 +8,10 @@ sources:
     url: "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2070.htm"
   - title: "国税庁 タックスアンサー No.2072 青色申告特別控除"
     url: "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2072.htm"
-tags: ["税金"]
-# weight: 
+weight: 3
+genre: evergreen
+aliases:
+  - /article/blue-declaration/
 ---
 
 <!-- 青色 -->

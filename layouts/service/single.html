@@ -1,20 +1,16 @@
 {{ define "main" }}
 <div class="main">
-    <h1><span>業務内容</span></h1>
-    <p>
-        以下のような業務を請け負わせていただきますが、単に作業を機械的に行うだけでなく、個々の状況に応じた最適な方法を導き、事業発展に少しでも貢献させていただきたいと思います。
-    </p>
-    <ul>
-        {{ range .Site.Params.services }}<li>{{ . }}</li>{{ end }}
-    </ul>
-    {{ with .Params.faq }}
-    <h2><span>よくある質問</span></h2>
-    <dl class="faq">
-        {{ range . }}
-        <dt>{{ .q }}</dt>
-        <dd>{{ .a | markdownify }}</dd>
-        {{ end }}
-    </dl>
+    {{ partial "breadcrumb.html" . }}
+    <h1><span>{{ .Title }}</span></h1>
+    <div class="page_content">{{ .Content }}</div>
+    {{ with .Params.related }}
+    <div class="same_hub related_guides">
+        <div class="same_hub_label">関連する税務ガイド</div>
+        <ul>
+            {{ range . }}{{ with site.GetPage . }}<li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>{{ end }}{{ end }}
+        </ul>
+    </div>
     {{ end }}
+    {{ partial "cta.html" (dict "title" "このご相談について、お問い合わせください" "text" "ご相談内容をお知らせください。内容を確認のうえ、ご連絡します。" "topic" .Params.topic "location" "service_page") }}
 </div>
 {{ end }}

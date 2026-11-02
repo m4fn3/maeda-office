@@ -10,8 +10,10 @@ sources:
     url: "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1191.htm"
   - title: "国税庁 タックスアンサー No.1195 配偶者特別控除"
     url: "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1195.htm"
-tags: ["税金", "給与・社保"]
-weight: 7
+weight: 2
+genre: annual
+aliases:
+  - /article/salary-declaration-r7/
 ---
 <!-- 基配特所 -->
 

@@ -12,8 +12,10 @@ sources:
     url: "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1199.htm"
   - title: "国税庁 タックスアンサー No.1200 税額控除"
     url: "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1200.htm"
-tags: ["税金"]
-weight: 3
+weight: 2
+genre: evergreen
+aliases:
+  - /article/income/
 ---
 <!-- 所得 -->
 

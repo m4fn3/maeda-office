@@ -5,8 +5,8 @@ title = '前田武志税理士事務所'
 hasCJKLanguage = true # 日本語の要約・文字数カウントを正しく扱う
 timeZone = 'Asia/Tokyo' # 日付を +09:00 で出力する
 
-[taxonomies]
-  tag = "tags" # categoriesを無効化
+# タグは使わない（記事は「テーマのハブ」＝ content/guide/<ハブ>/ のディレクトリで分類する）
+disableKinds = ['taxonomy', 'term']
 
 [markup]
   [markup.goldmark]
@@ -30,20 +30,33 @@ timeZone = 'Asia/Tokyo' # 日付を +09:00 で出力する
   description = '神戸市東灘区の税理士事務所です。法人設立・個人事業の開業、会計・税務のご相談、経理指導、申告書作成、M&A・上場準備のご相談に対応します。'
   homeTitle = '神戸市東灘区の税理士｜前田武志税理士事務所'
   ogImage = 'images/og.png'
-  # 業務内容（業務内容ページの一覧と、JSON-LD の hasOfferCatalog の両方で使う）
-  services = [
-    '法人設立・個人事業開業のご相談・各種届出',
-    '事業運営に伴う会計・税務に関するご相談',
-    '経理指導・代行',
-    '法人税・消費税・所得税等の申告書作成',
-    'Ｍ＆Ａに関するご相談',
-    '上場準備に関するご相談',
-    '給与関連のご相談',
-  ]
   knowsAbout = ['法人設立', '個人事業の開業', '会計', '税務', '経理指導', '法人税', '消費税', '所得税', '青色申告', '給与・源泉徴収', 'M&A', '上場準備']
   # Search Console / Bing Webmaster の所有権確認（メタタグ方式）。取得したら値を入れる。
   googleSiteVerification = ''
   bingSiteVerification = ''
+
+  # 業務内容（トップ・業務内容ページ・JSON-LD の hasOfferCatalog・llms.txt で共通に使う）
+  # path は個別ページ（content/service/<名前>.md）。topic はお問い合わせフォームの「ご相談内容」の値と対応する。
+  [[params.services]]
+    name = '顧問契約（会計・税務・経理指導）'
+    path = '/service/komon/'
+    topic = 'komon'
+    summary = '会計・税務のご相談、経理指導・代行、法人税・消費税・所得税等の申告書作成を、継続的にお手伝いします。'
+  [[params.services]]
+    name = '上場準備・M&Aのご相談'
+    path = '/service/ipo-ma/'
+    topic = 'ipo-ma'
+    summary = '上場準備に伴う管理体制の整備や、Ｍ＆Ａ（買収調査・交渉）に関するご相談をお受けします。'
+  [[params.services]]
+    name = '開業・法人設立のご相談'
+    path = '/service/kaigyo-setsuritsu/'
+    topic = 'kaigyo'
+    summary = '個人事業の開業、法人設立のご相談と、あわせて必要となる各種届出をお手伝いします。'
+  [[params.services]]
+    name = '給与・年末調整のご相談'
+    path = '/service/kyuyo-nenmatsu/'
+    topic = 'kyuyo'
+    summary = '給与にまつわる源泉徴収・年末調整・給与支払報告書などのご相談をお受けします。'
 
   [params.office]
     name = '前田武志税理士事務所'

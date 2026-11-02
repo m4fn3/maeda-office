@@ -8,8 +8,10 @@ sources:
     url: "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2090.htm"
   - title: "国税庁 タックスアンサー No.2505 源泉所得税及び復興特別所得税の納付期限と納期の特例"
     url: "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2505.htm"
-tags: ["起業"]
 weight: 1
+genre: procedure
+aliases:
+  - /article/how-to-start-business/
 ---
 <!-- 事業開始 -->
 

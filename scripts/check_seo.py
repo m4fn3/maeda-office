@@ -61,6 +61,9 @@ pages = [p for p in glob.glob(os.path.join(public, "**/index.html"), recursive=T
 for path in pages:
     rel = os.path.relpath(path, public)
     html = read(path)
+    # 旧 URL からの転送ページ（Hugo の aliases が作る）は検査しない
+    if 'http-equiv=refresh' in html or 'http-equiv="refresh"' in html:
+        continue
     if len(re.findall(r"<link rel=canonical ", html)) != 1:
         err(f"{rel}: canonical が1つではありません")
     if not re.search(r'<meta name=description content="?[^">]+', html):
@@ -105,7 +108,8 @@ for path in pages:
             for k in ("opens", "closes"):
                 if not re.fullmatch(r"\d\d:\d\d", spec.get(k, "")):
                     err(f"{rel}: 営業時間の形式が不正です: {spec.get(k)}")
-    if rel.startswith("article/") and rel != "article/index.html":
+    # 記事 = guide/<ハブ>/<記事>/index.html（深さ 3）
+    if rel.startswith("guide/") and rel.count("/") == 3:
         if "Article" not in types:
             err(f"{rel}: 記事なのに Article がありません")
         if "BreadcrumbList" not in types:

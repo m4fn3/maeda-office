@@ -8,8 +8,10 @@ sources:
     url: "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1180.htm"
   - title: "国税庁 タックスアンサー No.1191 配偶者控除"
     url: "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1191.htm"
-tags: ["税金", "給与・社保"]
-weight: 6
+weight: 1
+genre: annual
+aliases:
+  - /article/salary-dependent-declaration-r8/
 ---
 <!-- 〇扶 -->
 

@@ -8,8 +8,10 @@ sources:
     url: "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2505.htm"
   - title: "国税庁 タックスアンサー No.6531 新規開業又は法人の新規設立のとき"
     url: "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6531.htm"
-tags: ["起業"]
 weight: 2
+genre: procedure
+aliases:
+  - /article/how-to-start-business2/
 ---
 <!-- 設立 -->
 

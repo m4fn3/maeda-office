@@ -1,0 +1,10 @@
+{{- /* 業務内容のカード（トップ・業務内容ページで共通）。hugo.toml の [[params.services]] から作る */ -}}
+<ul class="service_cards">
+    {{ range .Site.Params.services }}
+    <li class="service_card">
+        <a class="service_card_title" href="{{ .path | relURL }}">{{ .name }}</a>
+        <div class="service_card_summary">{{ .summary }}</div>
+        <a class="text_link" href="{{ .path | relURL }}">詳しく見る &rarr;</a>
+    </li>
+    {{ end }}
+</ul>

@@ -15,20 +15,29 @@
 
 ## 業務内容
 
-{{ range .Site.Params.services }}- {{ . }}
+{{ range .Site.Params.services -}}
+- [{{ .name }}]({{ absURL .path }}): {{ .summary }}
 {{ end }}
 ## ページ
 
-{{ range (slice "/profile" "/service" "/contact") -}}
+{{ range (slice "/profile" "/service" "/contact" "/privacy") -}}
 {{- with site.GetPage . -}}
 - [{{ .Title }}]({{ .Permalink }}){{ with .Params.description }}: {{ . }}{{ end }}
 {{ end -}}
 {{- end }}
-## お役立ち豆知識（税務・会計の解説記事）
+## 税務ガイド（税務・会計の解説記事）
 
-{{ range (site.GetPage "/article").Pages -}}
+{{ range (site.GetPage "/guide").Sections.ByWeight -}}
+### {{ .Title }}
+
+{{ with .Params.description }}{{ . }}
+
+{{ end -}}
+- [{{ .Title }}の記事一覧]({{ .Permalink }})
+{{ range .RegularPages.ByWeight -}}
 - [{{ .Title }}]({{ .Permalink }}){{ with .Params.description }}: {{ . }}{{ end }}（公開 {{ .Date.Format "2006-01-02" }}／更新 {{ .Lastmod.Format "2006-01-02" }}）
 {{ end }}
+{{ end -}}
 ## 注意
 
 - 記事は一般的な情報の提供を目的としており、個別の事情に応じた税務判断は専門家にご相談ください。

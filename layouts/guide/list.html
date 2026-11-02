@@ -1,0 +1,11 @@
+{{ define "main" }}
+<div class="main">
+    {{ partial "breadcrumb.html" . }}
+    <h1><span>{{ .Title }}</span></h1>
+    <p>
+        事業を営むうえで知っておきたい税務・会計の知識を、テーマ別にまとめています。<br>
+        制度の改正にあわせて、内容を見直しています。各記事の更新日と出典をご確認ください。
+    </p>
+    {{ partial "hub_cards.html" (dict "hubs" .Sections.ByWeight "latest" true) }}
+</div>
+{{ end }}
