@@ -3,7 +3,7 @@
 <div class="footer">
     <div><img src="{{ "images/logo_white.png" | relURL }}" alt="{{ $o.name }}"></div>
     <address>
-        <span>〒{{ $o.postalCode }} {{ $o.region }}{{ $o.locality }}{{ $o.streetDisplay }}</span> <span>{{ $o.building }}</span><br>
+        <span>〒{{ $o.postalCode }} {{ $o.region }}{{ $o.locality }}{{ $o.streetDisplay | replaceRE "([０-９0-9]+丁目.*)$" "<span class=\"nowrap\">$1</span>" | safeHTML }}</span> <span class="nowrap">{{ $o.building }}</span><br>
         <span>営業時間：毎日 {{ $o.hours }}（{{ $o.hoursNote }}）</span><br>
         <span>税理士登録番号 第{{ $p.registrationNumber }}号（{{ $p.association }}所属）</span>
     </address>

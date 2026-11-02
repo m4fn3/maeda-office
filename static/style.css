@@ -28,6 +28,9 @@ h1 {
 h1 span {
     border-bottom: 5px solid #007B8F;
     padding: 0 8px 1px 5px;
+    /* 長いタイトルが折り返しても、各行の左端と下線をそろえる */
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
 }
 h2 {
     font-size: 20px;
@@ -397,6 +400,10 @@ h2 {
     border-top: 1px solid #d8d8d8;
 }
 .article_list_tag_box {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 8px;
     margin: 5px 20px;
 }
 .article_list_tag_box > span {
@@ -414,6 +421,7 @@ h2 {
     border-radius: 15px;
 }
 .article_list_title {
+    display: block; /* 折り返した2行目以降も1行目と左端をそろえる */
     margin: 5px 20px;
 }
 .article_back {
@@ -547,6 +555,9 @@ h2 {
     font-size: 13px;
     margin: 0 0 10px 0;
     color: #4a5a6a;
+    white-space: nowrap; /* 長い記事名は1行に収めて末尾を省略 */
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .breadcrumb a {
     text-decoration: underline;
@@ -638,14 +649,10 @@ h2 {
 }
 .article_list_tag_box > span.article_dates {
     font-size: 13px;
-    padding: 2px 10px;
+    padding: 2px 0;
 }
 .article_dates .date_label {
     margin-right: 2px;
-}
-.article_list .article_dates {
-    display: flex;
-    margin: 6px 20px 0 20px;
 }
 
 /* 記事末尾：執筆者（見出し・タグ・ボタン・写真の枠など、サイトの他の部分と同じ部品で作る） */
@@ -727,4 +734,30 @@ h2 {
 @media (max-width: 600px) {
     .author_box_main { gap: 12px; }
     .author_box_avatar { width: 56px; height: 56px; }
+}
+
+/* 矢印付きの文字リンク（執筆者ボックスの「プロフィールを見る」と同じ見た目） */
+.main .text_link {
+    display: inline-block;
+    margin-left: 12px;
+    font-size: 13.5px;
+    color: #007B8F;
+    border-bottom: 1px solid #007B8F;
+}
+.main .text_link:hover {
+    opacity: 0.7;
+}
+@media (max-width: 600px) { /* 狭い画面では改行して左端をそろえる */
+    .main .text_link {
+        display: table;
+        margin: 4px 0 0 0;
+    }
+}
+
+/* 狭い画面：見出しを少し小さくして折り返しを減らす */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 23px;
+        line-height: 1.5;
+    }
 }
