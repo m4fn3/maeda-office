@@ -36,15 +36,15 @@
         <aside class="author_box" aria-label="執筆者">
             <h2>この記事の執筆者</h2>
             <div class="author_box_main">
-                <img class="author_box_photo" src="{{ "images/profile.jpeg" | relURL }}" alt="{{ $p.name }}" width="72" height="72" loading="lazy">
+                <span class="author_box_avatar"><img class="author_box_photo" src="{{ "images/profile.jpeg" | relURL }}" alt="{{ $p.name }}" width="72" height="72" loading="lazy"></span>
                 <div class="author_box_body">
                     <div class="author_box_name">
                         <a href="{{ $profile.RelPermalink }}">{{ $p.name }}</a>
-                        <span class="author_box_tag">{{ $p.jobTitle }}</span>
+                        <span class="author_box_job">{{ $p.jobTitle }}</span>
                     </div>
                     <div class="author_box_meta">{{ $p.association }}所属 ／ 登録番号 第{{ $p.registrationNumber }}号</div>
                     <p class="author_box_text">{{ $o.region }}{{ $o.locality }}で{{ $o.name }}を運営しています。</p>
-                    <a class="author_box_link" href="{{ $profile.RelPermalink }}">プロフィールを見る</a>
+                    <a class="author_box_link" href="{{ $profile.RelPermalink }}">プロフィールを見る &rarr;</a>
                 </div>
             </div>
             <p class="author_box_note">

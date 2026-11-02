@@ -657,16 +657,23 @@ h2 {
     gap: 16px;
     margin: 12px 20px 0 20px;
 }
-.article_content .author_box .author_box_photo {
+.author_box_avatar { /* 枠なしの四角（角だけ丸め）。顔にズームして切り抜く */
     flex: none;
     width: 72px;
     height: 72px;
-    max-width: 72px;
-    box-sizing: content-box;
-    object-fit: cover;
-    object-position: 50% 18%;
-    border: 6px solid rgba(179, 227, 234, 0.6); /* プロフィールの写真と同じ枠 */
     border-radius: 5px;
+    overflow: hidden;
+    background: #cfe9ee;
+    box-shadow: 0 0 0 1px #9fd3dc; /* 背景が薄い写真でも四角と分かるように細い線だけ */
+}
+.article_content .author_box .author_box_photo {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    object-fit: cover;
+    transform: scale(1.65);
+    transform-origin: 45% 33%;
 }
 .author_box_body {
     min-width: 0;
@@ -678,15 +685,10 @@ h2 {
 .article_content .author_box_name a {
     font-weight: 600;
 }
-.author_box_tag { /* 記事タグと同じ見た目 */
-    display: inline-block;
+.author_box_job { /* 肩書きは名前の後ろに普通の文字で添える */
     margin-left: 8px;
-    padding: 1px 10px;
-    font-size: 13px;
-    color: #2E4053;
-    background-color: #8FE388;
-    border-radius: 15px;
-    vertical-align: 1px;
+    font-size: 14px;
+    color: #4a5a6a;
 }
 .author_box_meta {
     font-size: 13px;
@@ -697,16 +699,14 @@ h2 {
     margin: 6px 0 10px 0;
     font-size: 14.5px;
 }
-.article_content .author_box .author_box_link { /* 「記事一覧へ戻る」と同じボタン */
+.article_content .author_box .author_box_link { /* 下の「記事一覧へ戻る」ボタンと区別するため、ボタンにせず文字リンクにする */
     display: inline-block;
-    color: #2E4053;
-    background-color: #8FE388;
-    font-size: 13px;
-    padding: 3px 16px;
-    border-radius: 5px;
+    font-size: 13.5px;
+    color: #007B8F;
+    border-bottom: 1px solid #007B8F;
 }
 .article_content .author_box .author_box_link:hover {
-    background-color: #6FCF97;
+    opacity: 0.7;
 }
 .article_content .author_box p.author_box_note {
     margin: 18px 20px 0 20px;
@@ -718,5 +718,5 @@ h2 {
 }
 @media (max-width: 600px) {
     .author_box_main { gap: 12px; }
-    .article_content .author_box .author_box_photo { width: 56px; height: 56px; max-width: 56px; }
+    .author_box_avatar { width: 56px; height: 56px; }
 }
